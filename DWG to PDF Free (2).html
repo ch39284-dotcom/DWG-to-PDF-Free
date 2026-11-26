@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>DWG to PDF Free — DWG to PDF, PDF to DXF, DWF to PDF & DWG to JPG/PNG Converters</title>
+<meta name="description" content="Four free CAD converters in your browser, no signup: DWG/DXF to PDF, PDF to DXF (editable CAD that saves as DWG), DWF to PDF and DWG/DXF to JPG/PNG. Single file, free, files never leave your device." />
+<meta name="keywords" content="dwg to pdf, dwg to pdf converter free online, convert dwg to pdf without autocad, dxf to pdf, pdf to dwg, pdf to dxf, dwf to pdf, dwg to jpg, dwg to png, dwg to pdf black and white, how to save dwg to pdf, dwg to pdf pc3" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How to save DWG to PDF?","acceptedAnswer":{"@type":"Answer","text":"In AutoCAD, type PLOT, choose DWG To PDF.pc3 as the printer, pick a paper size and plot area, then click OK to save the PDF. Without AutoCAD, save the drawing as DXF and use a free online DXF to PDF converter in your browser."}},
+{"@type":"Question","name":"How to export DWG to PDF?","acceptedAnswer":{"@type":"Answer","text":"Export and plot mean the same thing for DWG files. Use the PLOT or EXPORTPDF command in AutoCAD, or open the file in the free Autodesk DWG TrueView and plot it to PDF."}},
+{"@type":"Question","name":"What is DWG To PDF.pc3?","acceptedAnswer":{"@type":"Answer","text":"DWG To PDF.pc3 is AutoCAD's built-in virtual PDF printer driver. When you plot with it, AutoCAD writes a vector PDF file instead of sending the drawing to a physical printer."}},
+{"@type":"Question","name":"What is the best DWG to PDF converter online free?","acceptedAnswer":{"@type":"Answer","text":"For DXF files, a browser-based converter is best because it is free, private and needs no install. For native DWG files you need a tool backed by a real CAD engine such as Autodesk DWG TrueView (free desktop) or a CAD API service."}},
+{"@type":"Question","name":"How can I convert PDF to DWG for free?","acceptedAnswer":{"@type":"Answer","text":"Upload a vector PDF (one plotted from CAD software) to a PDF to DXF converter: it extracts the line geometry and writes an editable DXF file. Open the DXF in AutoCAD, BricsCAD or LibreCAD and use Save As to save it as a native DWG. Scanned image PDFs contain no vector lines, so they cannot be converted this way."}},
+{"@type":"Question","name":"How do I convert DWF to PDF for free?","acceptedAnswer":{"@type":"Answer","text":"DWFx files (the ZIP and XML based DWF format) can be converted in your browser: the converter reads the sheet geometry from the DWFx package and writes a standard vector PDF. Classic binary DWF files can be opened in the free Autodesk Design Review and printed to PDF."}},
+{"@type":"Question","name":"How do I convert DWG to JPG or PNG?","acceptedAnswer":{"@type":"Answer","text":"Export the drawing as DXF, load it into a DXF to image converter, choose PNG for a transparent or crisp image or JPG for a smaller file, pick a resolution and download. PNG at 2x or 3x is best for slides and WhatsApp sharing."}}
+]}
+</script>
+<style>
+:root{
+  --bg:#0a0f16; --surface:#101a29; --surface2:#0c141f; --ink:#e9f1fa; --muted:#94a7bd;
+  --line:#1f2d42; --accent:#3b82f6; --accent-hover:#2563eb; --accent-ink:#ffffff; --accent-soft:#12283f;
+  --teal:#38bdf8; --teal-soft:#0d2233; --warn-bg:#2a2110; --warn-line:#6b5518; --warn-ink:#f2d98c;
+  --canvas-bg:#0b1116; --radius:14px; --shadow:0 14px 34px rgba(0,0,0,.45);
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Archivo",sans-serif;line-height:1.12;letter-spacing:-.01em;margin:0}
+a{color:var(--teal)}
+button,select,input,summary{min-height:44px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.mono{font-family:"IBM Plex Mono",monospace}
+
+/* HERO */
+.hero{padding:44px 0 8px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);border:1px solid var(--line);padding:7px 12px;border-radius:999px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;margin:18px 0 14px;max-width:820px}
+.hero h1 .hl{color:var(--accent)}
+.hero p.lede{font-size:clamp(16px,2.4vw,19px);color:var(--muted);max-width:680px;margin:0 0 22px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;border:1px solid transparent;padding:12px 22px;font-weight:700;font-size:15.5px;cursor:pointer;text-decoration:none;font-family:inherit;transition:transform .12s ease, background .12s ease}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:14px;color:var(--muted)}
+.trust span{display:inline-flex;gap:7px;align-items:center}
+.trust b{color:var(--teal);font-weight:700}
+
+/* CONVERTER */
+.tool{margin:30px 0 8px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.tool-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.tool-head h2{font-size:21px}
+.tool-head .tag{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--accent-soft);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600}
+.tool-grid{display:grid;grid-template-columns:340px 1fr;min-height:480px}
+@media(max-width:820px){.tool-grid{grid-template-columns:1fr}}
+.panel{padding:20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:18px}
+@media(max-width:820px){.panel{border-right:none;border-bottom:1px solid var(--line)}}
+.drop{border:2px dashed var(--line);border-radius:var(--radius);padding:22px 16px;text-align:center;cursor:pointer;background:var(--surface2);transition:border-color .15s, background .15s}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop .big{font-weight:700;font-size:16px;margin:8px 0 4px}
+.drop p{margin:0;font-size:13.5px;color:var(--muted)}
+.drop .icon{font-size:30px;line-height:1}
+.fileinfo{display:none;background:var(--teal-soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px;word-break:break-all}
+.fileinfo.show{display:block}
+.samples h3,.ctrl h3{font-size:13px;font-family:"IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.sample-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sample-btn{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 6px;cursor:pointer;font-family:inherit;font-weight:600;font-size:13px;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:6px}
+.sample-btn svg{width:34px;height:26px}
+.sample-btn:hover{border-color:var(--accent)}
+.ctrl{display:flex;flex-direction:column;gap:12px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.field select{width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:inherit;font-size:14.5px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{border:none;background:var(--surface);color:var(--muted);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;padding:10px}
+.seg button.on{background:var(--accent);color:#ffffff}
+.dl{margin-top:auto}
+.dl .btn{width:100%}
+.dl small{display:block;text-align:center;color:var(--muted);margin-top:8px;font-size:12.5px}
+.msg{display:none;border-radius:10px;padding:11px 13px;font-size:13.5px}
+.msg.show{display:block}
+.msg.err{background:#3a1a1a;border:1px solid #7a3535;color:#f3b8b8}
+.msg.warn{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink)}
+.stage{display:flex;flex-direction:column;background:var(--surface2)}
+.stage-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.stage-bar .stats{font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.canvas-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:16px;min-height:340px}
+canvas#preview{max-width:100%;height:auto;background:#fff;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.empty-note{text-align:center;color:var(--muted);max-width:340px;padding:20px}
+.empty-note .icon{font-size:38px}
+
+/* NOTE */
+.note{margin:22px 0 0;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:var(--radius);padding:18px 20px;font-size:15px}
+.note h2{font-size:17px;margin-bottom:6px;color:inherit}
+.note p{margin:0 0 8px}.note p:last-child{margin:0}
+
+/* SECTIONS */
+section.block{padding:52px 0 6px}
+section.block h2{font-size:clamp(25px,4vw,34px);margin-bottom:10px}
+section.block .sub{color:var(--muted);max-width:680px;margin:0 0 26px;font-size:16px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.step .n{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--accent);font-size:13px;letter-spacing:.06em}
+.step h3{font-size:17px;margin:8px 0 6px}
+.step p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* GUIDES */
+.guides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.guides{grid-template-columns:1fr}}
+details.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+details.card summary{cursor:pointer;list-style:none;padding:18px 20px;display:flex;gap:12px;align-items:flex-start;font-weight:700;font-family:"Archivo",sans-serif;font-size:16.5px}
+details.card summary::-webkit-details-marker{display:none}
+details.card summary .chev{margin-left:auto;color:var(--accent);font-weight:800;transition:transform .15s}
+details.card[open ] summary .chev{transform:rotate(45deg)}
+details.card .body{padding:0 20px 20px;color:var(--muted);font-size:14.8px}
+details.card .body ol,details.card .body ul{margin:8px 0;padding-left:20px}
+details.card .body li{margin-bottom:6px}
+details.card .body strong,details.card .body code{color:var(--ink)}
+code{font-family:"IBM Plex Mono",monospace;font-size:.92em;background:var(--surface2);padding:1px 6px;border-radius:5px}
+.kw{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--teal);display:block;margin-bottom:2px;letter-spacing:.04em}
+
+/* RELATED */
+.rel{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.rel{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.rel{grid-template-columns:1fr}}
+.rel a,.rel .soon{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-decoration:none;color:var(--ink);display:block}
+.rel a:hover{border-color:var(--accent)}
+.rel h3{font-size:16.5px;margin:0 0 6px}
+.rel p{margin:0;color:var(--muted);font-size:14px}
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;margin-bottom:10px;letter-spacing:.05em}
+.pill.live{background:var(--teal-soft);color:var(--teal)}
+.pill.soonp{background:var(--surface2);color:var(--muted)}
+
+/* FAQ */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 4px;font-weight:700;font-size:16.5px;font-family:"Archivo",sans-serif;display:flex;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{margin-left:auto;color:var(--accent)}
+.faq details[open ] summary .chev{transform:rotate(45deg)}
+.faq .body{padding:0 4px 20px;color:var(--muted);font-size:15px;max-width:720px}
+.faq .body strong{color:var(--ink)}
+
+/* TOOL NAV + EXTRA TOOLS */
+.toolnav{padding:12px 0 4px;margin-top:18px}
+.toolnav .row{display:flex;gap:8px;flex-wrap:wrap}
+.toolnav a{flex:1 1 150px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
+.toolnav a small{display:block;font-weight:500;color:var(--teal);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;margin-top:2px}
+.toolnav a:hover{border-color:var(--accent)}
+.tool.extra{margin-top:34px}
+.tool .honest{font-size:13.5px;color:var(--muted);background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tool .honest strong{color:var(--ink)}
+canvas.mini{max-width:100%;height:auto;background:#fff;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+canvas.mini.darkbg{background:#101820}
+canvas.mini.checker{background:repeating-conic-gradient(#d9d9d9 0 25%, #ffffff 0 50%) 0 0/22px 22px}
+.seg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg3 button{border:none;background:var(--surface);color:var(--muted);font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;padding:10px 4px}
+.seg3 button.on{background:var(--accent);color:#ffffff}
+
+footer{margin-top:60px;border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13.5px}
+footer .cols{display:flex;flex-wrap:wrap;gap:8px 26px;margin-bottom:14px}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--ink)}
+
+/* SITE BAR */
+.sitebar{position:sticky;top:0;z-index:40;background:var(--surface2);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding-top:10px;padding-bottom:10px}
+.brand{font-family:"Archivo",sans-serif;font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand span{color:var(--accent)}
+.sitenav{display:flex;flex-wrap:wrap;gap:4px;margin-left:auto}
+.sitenav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px}
+.sitenav a:hover{color:var(--ink);background:var(--surface)}
+.sitenav a.on{color:#ffffff;background:var(--accent)}
+.btn-primary:hover{background:var(--accent-hover)}
+section[id],div.tool[id]{scroll-margin-top:84px}
+@media(max-width:640px){section[id],div.tool[id]{scroll-margin-top:150px}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* STANDALONE PAGES */
+[hidden]{display:none !important}
+.pageview{padding:42px 0 6px}
+.pageview .kw{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:8px}
+.pageview h1{font-size:clamp(28px,4.6vw,40px);font-weight:800;margin-bottom:12px}
+.pageview .updated{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.prose{max-width:760px;color:var(--muted);font-size:15.5px}
+.prose h2{font-size:20px;color:var(--ink);margin:28px 0 8px}
+.prose h2:first-child{margin-top:6px}
+.prose p{margin:0 0 12px}
+.prose ul,.prose ol{margin:0 0 14px;padding-left:22px}
+.prose li{margin-bottom:6px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--teal)}
+.page-back{margin-top:34px}
+.cform{max-width:760px;display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.cform label{display:block;font-size:13.5px;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.cform input,.cform textarea{width:100%;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:inherit;font-size:15px}
+.cform textarea{min-height:130px;resize:vertical}
+.cform .btn{align-self:flex-start}
+.cform .btn[disabled]{opacity:.65;cursor:not-allowed}
+.form-status{display:none;border-radius:10px;padding:13px 15px;font-size:14.5px;line-height:1.5}
+.form-status.show{display:block}
+.form-status.success{background:#0f2e1f;border:1px solid #1f6b45;color:#a7e8c3}
+.form-status.error{background:#3a1a1a;border:1px solid #7a3535;color:#f3b8b8}
+.toollist{display:flex;flex-direction:column;gap:14px;max-width:860px}
+.toollist .trow{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+.toollist .trow h3{font-size:17.5px;margin:0}
+.toollist .trow p{margin:4px 0 0;color:var(--muted);font-size:14.5px;flex:1 1 320px}
+.toollist .trow a{font-weight:700;font-size:14.5px;white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="sitebar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#/" data-navlink="home">DWG to PDF <span>Free</span></a>
+    <nav class="sitenav" aria-label="Site pages">
+      <a href="#/" data-navlink="home">Home</a>
+      <a href="#/tools" data-navlink="tools">All Tools</a>
+      <a href="#/about" data-navlink="about">About</a>
+      <a href="#/contact" data-navlink="contact">Contact</a>
+      <a href="#/privacy" data-navlink="privacy">Privacy Policy</a>
+      <a href="#/terms" data-navlink="terms">Terms of Use</a>
+      <a href="#/disclaimer" data-navlink="disclaimer">Disclaimer</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+<div id="view-home">
+  <!-- HERO -->
+  <header class="hero">
+    <span class="eyebrow"><i></i> 4 free tools · No Pro plan · No signup</span>
+    <h1>DWG to PDF — <span class="hl">Free</span> Online Converters</h1>
+    <p class="lede">Four free single-file CAD converters that run in your browser: <strong>DWG/DXF to PDF</strong>, <strong>PDF to DXF</strong>, <strong>DWF to PDF</strong> and <strong>DWG to JPG/PNG</strong>. No AutoCAD needed, nothing to install, no payment — built for architects, engineers, drafters and contractors.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#converter">Convert a file — free</a>
+      <a class="btn btn-ghost" href="#guides">Read the guides</a>
+    </div>
+    <div class="trust">
+      <span><b>✓</b> 100% free — single file</span>
+      <span><b>✓</b> No AutoCAD needed</span>
+      <span><b>✓</b> No signup or email</span>
+      <span><b>✓</b> Files never leave your device</span>
+      <span><b>✓</b> Batch stays a guide (free desktop routes)</span>
+    </div>
+  </header>
+
+  <!-- TOOL NAV -->
+  <nav class="toolnav" aria-label="Free converters">
+    <div class="row">
+      <a href="#converter">DWG / DXF → PDF<small>FREE · LIVE</small></a>
+      <a href="#pdf-to-dwg">PDF → DXF<small>FREE · LIVE</small></a>
+      <a href="#dwf-to-pdf">DWF → PDF<small>FREE · LIVE</small></a>
+      <a href="#dwg-to-image">DWG → JPG / PNG<small>FREE · LIVE</small></a>
+    </div>
+  </nav>
+
+  <!-- CONVERTER -->
+  <div class="tool" id="converter">
+    <div class="tool-head">
+      <h2>Free DWG / DXF to PDF Converter</h2>
+      <span class="tag">DXF converts in-browser · Instant</span>
+    </div>
+    <div class="tool-grid">
+      <div class="panel">
+        <div class="drop" id="drop" role="button" tabindex="0" aria-label="Upload a DXF file">
+          <div class="icon">📐</div>
+          <div class="big">Drop your .DXF file here</div>
+          <p>or tap to browse — .dxf supported fully.<br />Got a .dwg? See the note below the tool.</p>
+          <input type="file" id="fileInput" accept=".dxf,.dwg" hidden />
+        </div>
+        <div class="fileinfo" id="fileInfo"></div>
+        <div class="msg warn" id="dwgMsg">⚠️ <strong>That's a native DWG file.</strong> DWG is a closed binary format — no browser can read it directly. Quick fix: open it in AutoCAD or the free DWG TrueView, choose <strong>Save As → DXF</strong>, then drop the DXF here. Full DWG support needs a CAD engine / API and is on the roadmap for this free tool.</div>
+        <div class="msg err" id="errMsg"></div>
+
+        <div class="samples">
+          <h3>No file handy? Try a sample</h3>
+          <div class="sample-row">
+            <button class="sample-btn" data-sample="floor" type="button">
+              <svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="34" height="24"/><line x1="3" y1="15" x2="22" y2="15"/><line x1="22" y1="3" x2="22" y2="27"/></svg>
+              Floor plan
+            </button>
+            <button class="sample-btn" data-sample="flange" type="button">
+              <svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="15" r="12"/><circle cx="20" cy="15" r="5"/><circle cx="20" cy="6" r="2"/><circle cx="20" cy="24" r="2"/><circle cx="11" cy="15" r="2"/><circle cx="29" cy="15" r="2"/></svg>
+              Flange
+            </button>
+            <button class="sample-btn" data-sample="bracket" type="button">
+              <svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="5" width="30" height="20" rx="3"/><circle cx="12" cy="12" r="3"/><circle cx="28" cy="12" r="3"/><circle cx="12" cy="20" r="3"/><circle cx="28" cy="20" r="3"/></svg>
+              Bracket plate
+            </button>
+          </div>
+        </div>
+
+        <div class="ctrl">
+          <h3>PDF settings</h3>
+          <div class="field">
+            <label for="paper">Paper size</label>
+            <select id="paper">
+              <option value="a4" selected>A4 — 297 × 210 mm (landscape fit)</option>
+              <option value="a3">A3 — 420 × 297 mm (landscape fit)</option>
+              <option value="letter">Letter — 11 × 8.5 in (landscape fit)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Colour mode</label>
+            <div class="seg" role="group" aria-label="Colour mode">
+              <button type="button" id="segColor" class="on">Colour</button>
+              <button type="button" id="segBW">Black &amp; white</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="weight">Line weight</label>
+            <select id="weight">
+              <option value="0.35">Thin — 0.35 pt</option>
+              <option value="0.7" selected>Normal — 0.7 pt</option>
+              <option value="1.4">Bold — 1.4 pt</option>
+              <option value="2.2">Extra bold — 2.2 pt</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="dl">
+          <button class="btn btn-primary" id="downloadBtn" type="button" disabled>⬇ Download PDF</button>
+          <small>Load a DXF or a sample first. The PDF is generated on your device.</small>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-bar">
+          <span id="stageTitle">Drawing preview</span>
+          <span class="stats" id="stageStats">No drawing loaded</span>
+        </div>
+        <div class="canvas-wrap" id="canvasWrap">
+          <div class="empty-note" id="emptyNote">
+            <div class="icon">🗎</div>
+            <p><strong>Your preview appears here.</strong><br />Upload a DXF file or tap one of the three sample drawings to see it render and convert.</p>
+          </div>
+          <canvas id="preview" width="900" height="620" style="display:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HONEST NOTE -->
+  <div class="note" role="note">
+    <h2>⚠ One honest note about DWG vs DXF</h2>
+    <p><strong>DXF works fully in your browser.</strong> DXF is an open, text-based format, so this free tool reads it, previews it and writes the PDF entirely on your device — your file is never uploaded anywhere.</p>
+    <p><strong>Native DWG needs a CAD engine.</strong> DWG is Autodesk's closed binary format with no published spec, so full DWG support requires a licensed CAD engine or a conversion API (for example the ODA libraries or Autodesk's own tools). This page is the free version: it converts DXF today, and the guides below show you the free ways to handle DWG — including saving a DWG as DXF in under a minute.</p>
+  </div>
+
+  <!-- PDF TO DWG -->
+  <div class="tool extra" id="pdf-to-dwg">
+    <div class="tool-head">
+      <h2>Free PDF to DXF Converter <span style="font-size:15px;color:var(--muted)">(saves as DWG in any CAD program)</span></h2>
+      <span class="tag">PDF → editable DXF · Instant</span>
+    </div>
+    <div class="tool-grid">
+      <div class="panel">
+        <div class="drop" id="p2dDrop" role="button" tabindex="0" aria-label="Upload a PDF file">
+          <div class="icon">↩️</div>
+          <div class="big">Drop your vector .PDF here</div>
+          <p>or tap to browse — a PDF plotted from AutoCAD, Revit or any CAD tool works best.</p>
+          <input type="file" id="p2dInput" accept=".pdf,application/pdf" hidden />
+        </div>
+        <div class="fileinfo" id="p2dInfo"></div>
+        <div class="msg err" id="p2dErr"></div>
+        <div class="honest"><strong>How this PDF to DXF tool works:</strong> the tool extracts the PDF's vector lines and writes an <strong>editable DXF</strong> — the open CAD format every CAD program reads. Open the DXF in AutoCAD, BricsCAD or free LibreCAD and <strong>Save As → DWG</strong> for a native DWG. Writing the closed DWG binary directly needs a licensed CAD engine, which is why every free converter takes this DXF route. Scanned / photo PDFs have no lines inside, so they can't be converted this way.</div>
+        <div class="samples">
+          <h3>No PDF handy? Try the round-trip sample</h3>
+          <div class="sample-row" style="grid-template-columns:1fr">
+            <button class="sample-btn" id="p2dSample" type="button">Load the Flange sample as a vector PDF &amp; convert it back to CAD</button>
+          </div>
+        </div>
+        <div class="dl">
+          <button class="btn btn-primary" id="p2dDownload" type="button" disabled>⬇ Download DXF (opens as CAD — save as DWG)</button>
+          <small>Load a vector PDF first. Conversion happens on your device.</small>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-bar"><span id="p2dTitle">Extracted geometry preview</span><span class="stats" id="p2dStats">No PDF loaded</span></div>
+        <div class="canvas-wrap">
+          <div class="empty-note" id="p2dEmpty"><div class="icon">✏️</div><p><strong>Extracted lines appear here.</strong><br />Upload a vector PDF and its linework is redrawn here before you download the editable CAD file.</p></div>
+          <canvas class="mini" id="p2dCanvas" width="900" height="620" style="display:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DWF TO PDF -->
+  <div class="tool extra" id="dwf-to-pdf">
+    <div class="tool-head">
+      <h2>Free DWF to PDF Converter</h2>
+      <span class="tag">DWFx → PDF · In-browser</span>
+    </div>
+    <div class="tool-grid">
+      <div class="panel">
+        <div class="drop" id="dwfDrop" role="button" tabindex="0" aria-label="Upload a DWF or DWFx file">
+          <div class="icon">🗂️</div>
+          <div class="big">Drop your .DWF / .DWFX here</div>
+          <p>or tap to browse — DWFx files (the standard DWF since 2008) convert fully in your browser.</p>
+          <input type="file" id="dwfInput" accept=".dwf,.dwfx" hidden />
+        </div>
+        <div class="fileinfo" id="dwfInfo"></div>
+        <div class="msg err" id="dwfErr"></div>
+        <div class="msg warn" id="dwfWarn">⚠️ <strong>That's a classic binary DWF</strong> (the older W2D format). No browser can read that binary stream directly. Free fix: open it in Autodesk Design Review (free) and Print → PDF, or re-publish it from AutoCAD as <strong>DWFx</strong> and drop the DWFx here.</div>
+        <div class="honest"><strong>What is supported:</strong> a DWFx file is a ZIP package of XML sheets — this tool opens the package on your device, reads each sheet's path geometry and writes a clean vector PDF (multi-sheet files are stacked onto one tall PDF page).</div>
+        <div class="samples">
+          <h3>No DWFx handy? Try a sample sheet</h3>
+          <div class="sample-row" style="grid-template-columns:1fr">
+            <button class="sample-btn" id="dwfSample" type="button">Load a sample DWFx sheet (title block drawing)</button>
+          </div>
+        </div>
+        <div class="ctrl">
+          <h3>PDF settings</h3>
+          <div class="field">
+            <label for="dwfPaper">Paper size</label>
+            <select id="dwfPaper">
+              <option value="a4" selected>A4 — 297 × 210 mm (landscape fit)</option>
+              <option value="a3">A3 — 420 × 297 mm (landscape fit)</option>
+              <option value="letter">Letter — 11 × 8.5 in (landscape fit)</option>
+            </select>
+          </div>
+        </div>
+        <div class="dl">
+          <button class="btn btn-primary" id="dwfDownload" type="button" disabled>⬇ Download PDF</button>
+          <small>Load a DWFx file or the sample first.</small>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-bar"><span id="dwfTitle">Sheet preview</span><span class="stats" id="dwfStats">No DWF loaded</span></div>
+        <div class="canvas-wrap">
+          <div class="empty-note" id="dwfEmpty"><div class="icon">📄</div><p><strong>Your DWF sheet appears here.</strong><br />Upload a DWFx file or load the sample sheet to see it render and convert to PDF.</p></div>
+          <canvas class="mini" id="dwfCanvas" width="900" height="620" style="display:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DWG TO IMAGE -->
+  <div class="tool extra" id="dwg-to-image">
+    <div class="tool-head">
+      <h2>Free DWG to JPG / PNG Converter</h2>
+      <span class="tag">DXF → PNG / JPG · For WhatsApp &amp; slides</span>
+    </div>
+    <div class="tool-grid">
+      <div class="panel">
+        <div class="drop" id="imgDrop" role="button" tabindex="0" aria-label="Upload a DXF file for image export">
+          <div class="icon">🖼️</div>
+          <div class="big">Drop your .DXF file here</div>
+          <p>or tap to browse — same DXF support as the main tool. Native .dwg? Save it as DXF first (see the note under the main converter).</p>
+          <input type="file" id="imgInput" accept=".dxf,.dwg" hidden />
+        </div>
+        <div class="fileinfo" id="imgInfo"></div>
+        <div class="msg err" id="imgErr"></div>
+        <div class="msg warn" id="imgDwgMsg">⚠️ <strong>That's a native DWG file.</strong> Browsers can't read the closed DWG binary. Save it as <strong>DXF</strong> in AutoCAD or free DWG TrueView, then drop the DXF here.</div>
+        <div class="samples">
+          <h3>Samples</h3>
+          <div class="sample-row">
+            <button class="sample-btn img-sample" data-sample="floor" type="button">Floor plan</button>
+            <button class="sample-btn img-sample" data-sample="flange" type="button">Flange</button>
+            <button class="sample-btn img-sample" data-sample="bracket" type="button">Bracket plate</button>
+          </div>
+        </div>
+        <div class="ctrl">
+          <h3>Image settings</h3>
+          <div class="field">
+            <label>Format</label>
+            <div class="seg" role="group" aria-label="Image format">
+              <button type="button" id="imgFmtPng" class="on">PNG</button>
+              <button type="button" id="imgFmtJpg">JPG</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Resolution</label>
+            <div class="seg3" role="group" aria-label="Resolution">
+              <button type="button" data-res="1" class="img-res">1× Web</button>
+              <button type="button" data-res="2" class="img-res on">2× Sharp</button>
+              <button type="button" data-res="3" class="img-res">3× Hi-res</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Background</label>
+            <div class="seg3" role="group" aria-label="Background">
+              <button type="button" data-bg="white" class="img-bg on">White</button>
+              <button type="button" data-bg="dark" class="img-bg">Dark</button>
+              <button type="button" data-bg="transparent" class="img-bg">Transparent</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Colour mode</label>
+            <div class="seg" role="group" aria-label="Image colour mode">
+              <button type="button" id="imgColor" class="on">Colour</button>
+              <button type="button" id="imgBW">Black &amp; white</button>
+            </div>
+          </div>
+        </div>
+        <div class="dl">
+          <button class="btn btn-primary" id="imgDownload" type="button" disabled>⬇ Download image</button>
+          <small>Transparent background works with PNG only — JPG falls back to white.</small>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-bar"><span id="imgTitle">Image preview</span><span class="stats" id="imgStats">No drawing loaded</span></div>
+        <div class="canvas-wrap">
+          <div class="empty-note" id="imgEmpty"><div class="icon">🏞️</div><p><strong>Your image preview appears here.</strong><br />Upload a DXF or tap a sample, choose PNG or JPG, resolution and background, then download.</p></div>
+          <canvas class="mini" id="imgCanvas" width="900" height="620" style="display:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="block">
+    <h2>How it works</h2>
+    <p class="sub">Three steps, under a minute for a typical drawing.</p>
+    <div class="steps">
+      <div class="step"><span class="n">STEP 01</span><h3>Upload or pick a sample</h3><p>Drop in a .dxf file — or a .dwg you've saved as DXF. Nothing is uploaded to a server; the file is read locally in this tab.</p></div>
+      <div class="step"><span class="n">STEP 02</span><h3>Preview &amp; set the sheet</h3><p>Check the drawing in the preview, then choose A4, A3 or Letter, colour or black &amp; white, and the line weight you want.</p></div>
+      <div class="step"><span class="n">STEP 03</span><h3>Download the PDF</h3><p>The PDF is written as true vector lines — sharp at any zoom, small file size — ready to email, print or share with a client.</p></div>
+    </div>
+  </section>
+
+  <!-- GUIDES -->
+  <section class="block" id="guides">
+    <h2>DWG to PDF guides</h2>
+    <p class="sub">Step-by-step answers for every way people convert CAD drawings to PDF — with AutoCAD, without it, in bulk, and on a phone.</p>
+    <div class="guides">
+
+      <details class="card">
+        <summary><span><span class="kw">dwg to pdf without autocad</span>How to convert DWG to PDF without AutoCAD</span><span class="chev">+</span></summary>
+        <div class="body">
+          <p>You don't need a paid AutoCAD licence to get a PDF out of a DWG. Three free routes:</p>
+          <ol>
+            <li><strong>This tool (fastest for DXF):</strong> If the sender can send DXF — or you save the DWG as DXF once — drop it in the converter above. Preview, pick a paper size, download the PDF.</li>
+            <li><strong>Autodesk DWG TrueView (free, Windows):</strong> Autodesk's own free viewer. Open the DWG, type <code>PLOT</code>, choose <code>DWG To PDF.pc3</code>, set paper and plot area, and save.</li>
+            <li><strong>ODA File Converter (free, Win/Mac/Linux):</strong> Converts DWG ↔ DXF in batches. Convert DWG to DXF first, then run the DXF through this page for the PDF.</li>
+          </ol>
+          <p>Ask whoever sent the DWG to also export a DXF (<code>SAVEAS</code> → DXF) — it takes them 20 seconds and removes the whole problem.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary><span><span class="kw">how to convert dwg to pdf in autocad</span>How to convert DWG to PDF in AutoCAD (PLOT &amp; DWG To PDF.pc3)</span><span class="chev">+</span></summary>
+        <div class="body">
+          <ol>
+            <li>Open the drawing and type <code>PLOT</code> (or Ctrl+P).</li>
+            <li>Under <strong>Printer/plotter</strong>, select <strong>DWG To PDF.pc3</strong>.</li>
+            <li>Pick your <strong>paper size</strong> (A4, A3…) and set <strong>Plot area</strong> to <em>Extents</em> or <em>Window</em>.</li>
+            <li>Tick <strong>Fit to paper</strong> and <strong>Center the plot</strong>.</li>
+            <li>Choose a plot style: <code>monochrome.ctb</code> for black &amp; white, or your office CTB for colour.</li>
+            <li>Click <strong>OK</strong>, choose a filename and folder — that's your PDF.</li>
+          </ol>
+          <p>Tip: for a one-click repeat, use <code>EXPORTPDF</code>, or save the setup as a <strong>Page Setup</strong> so every drawing plots identically.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary><span><span class="kw">batch convert dwg to pdf</span>Batch convert DWG to PDF</span><span class="chev">+</span></summary>
+        <div class="body">
+          <p>Got a folder of drawings? Converting one by one wastes an afternoon. <strong>Batch is not part of these free single-file tools</strong> — the four converters on this page do one file at a time, free. For batches today, use one of these free desktop routes:</p>
+          <ul>
+            <li><strong>AutoCAD PUBLISH:</strong> Type <code>PUBLISH</code>, add all the drawings/layouts, set output to PDF — AutoCAD writes one PDF (or one per sheet) for the whole set.</li>
+            <li><strong>Sheet Set Manager:</strong> Best for project sets — publish the entire sheet set to a single multi-page PDF.</li>
+            <li><strong>ODA File Converter + this tool:</strong> Batch-convert the DWG folder to DXF with the free ODA converter, then convert each DXF here. Slower, but completely free with no AutoCAD licence.</li>
+            <li><strong>Core Console scripts:</strong> AutoCAD's <code>accoreconsole.exe</code> can run a plot script across hundreds of files unattended — the pro route for very large sets.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary><span><span class="kw">how to convert dwg to pdf in mobile</span>How to convert DWG to PDF on mobile</span><span class="chev">+</span></summary>
+        <div class="body">
+          <ol>
+            <li><strong>On this page:</strong> This converter runs in your phone browser. If you have the DXF (from email, WhatsApp or Drive), tap the upload box above, preview, and download the PDF straight to your phone.</li>
+            <li><strong>AutoCAD mobile app:</strong> Open the DWG from cloud storage, use the share/plot options to export a PDF of the current view.</li>
+            <li><strong>Ask for DXF:</strong> On site and someone emails you a DWG? Reply asking for the DXF export too — then step 1 works every time, no app installs.</li>
+          </ol>
+          <p>For viewing only, the free DWG FastView app opens DWG on Android and iOS and can share views as images or PDF.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary><span><span class="kw">dwg to pdf black and white</span>DWG to PDF in black and white</span><span class="chev">+</span></summary>
+        <div class="body">
+          <p>Black &amp; white PDFs print cheaper, photocopy cleanly, and are the standard for issued construction drawings.</p>
+          <ul>
+            <li><strong>Here:</strong> Use the <strong>Black &amp; white</strong> toggle in the converter — every layer colour is plotted as black on white, exactly like a monochrome plot style.</li>
+            <li><strong>In AutoCAD:</strong> In the PLOT dialog, set the plot style table to <code>monochrome.ctb</code>. All colours map to black; line weights still come from the drawing.</li>
+            <li><strong>Watch out:</strong> Yellow and light-cyan layers print almost invisibly in colour but perfectly in monochrome — one more reason B&amp;W is the safe default for sharing.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary><span><span class="kw">what is dwg to pdf pc3</span>What is DWG To PDF.pc3?</span><span class="chev">+</span></summary>
+        <div class="body">
+          <p>A <strong>.pc3 file</strong> is an AutoCAD <em>plotter configuration</em> file — a saved set of settings for one output device. <strong>DWG To PDF.pc3</strong> is the one Autodesk ships with AutoCAD: a <em>virtual printer</em> that "prints" your drawing into a vector PDF file instead of onto paper.</p>
+          <ul>
+            <li>It supports custom paper sizes, layer export to PDF, and font embedding.</li>
+            <li>Companions you'll see in the list: <code>AutoCAD PDF (General Documentation).pc3</code>, <code>AutoCAD PDF (High Quality Print).pc3</code> and <code>AutoCAD PDF (Smallest File).pc3</code> — same idea, different quality/size trade-offs.</li>
+            <li>If it's missing from your plotter list, add it via <code>PLOTTERMANAGER</code> → Add-A-Plotter Wizard → Autodesk ePlot (PDF).</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- RELATED TOOLS -->
+  <section class="block" id="tools">
+    <h2>All four free CAD &amp; PDF tools</h2>
+    <p class="sub">Every converter on this page is live, free and single-file — no signup, no watermark. Batch conversion is the one thing kept out of the free tools; the batch guide above lists the free desktop routes.</p>
+    <div class="rel">
+      <a href="#converter"><span class="pill live">● LIVE — FREE</span><h3>DXF to PDF</h3><p>The main converter on this page. DXF is the open CAD format, so it converts 100% free, in your browser.</p></a>
+      <a href="#pdf-to-dwg"><span class="pill live">● LIVE — FREE</span><h3>PDF to DXF</h3><p>Extract a vector PDF's linework into an editable DXF — open it in any CAD program and save as native DWG.</p></a>
+      <a href="#dwf-to-pdf"><span class="pill live">● LIVE — FREE</span><h3>DWF to PDF</h3><p>DWFx sheets converted to a shareable vector PDF anyone can open and print — right in your browser.</p></a>
+      <a href="#dwg-to-image"><span class="pill live">● LIVE — FREE</span><h3>DWG to JPG / PNG</h3><p>Export a drawing as a PNG or JPG image for WhatsApp, slides and quick markups — up to 3× resolution.</p></a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <h2>Frequently asked questions</h2>
+    <p class="sub">Straight answers to the questions people actually search for.</p>
+    <div class="faq">
+
+      <details>
+        <summary>How to save DWG to PDF?<span class="chev">+</span></summary>
+        <div class="body"><p>In AutoCAD: type <code>PLOT</code>, choose <strong>DWG To PDF.pc3</strong>, set paper size and plot area, click OK and save. Without AutoCAD: save or export the file as <strong>DXF</strong> and use the free converter at the top of this page — upload, preview, download. No signup either way.</p></div>
+      </details>
+
+      <details>
+        <summary>How to export DWG to PDF — is it different from plotting?<span class="chev">+</span></summary>
+        <div class="body"><p>Not really. "Export", "save as PDF", "print to PDF" and "plot to PDF" all produce the same thing: a PDF of your drawing. AutoCAD even has a dedicated <code>EXPORTPDF</code> command that uses your current page setup. This page uses the same idea for DXF files — the PDF is written from the drawing's vector geometry.</p></div>
+      </details>
+
+      <details>
+        <summary>How to print DWG to PDF?<span class="chev">+</span></summary>
+        <div class="body"><p>"Printing" to PDF means choosing a virtual PDF printer instead of a physical one. In AutoCAD that's <strong>DWG To PDF.pc3</strong> in the PLOT dialog. In any Windows app you can also use <em>Microsoft Print to PDF</em> — but for CAD files the pc3 route keeps layers and line weights correct, so prefer it.</p></div>
+      </details>
+
+      <details>
+        <summary>What is the best DWG to PDF converter online free?<span class="chev">+</span></summary>
+        <div class="body"><p>It depends on your file. For <strong>DXF</strong>, a browser converter like this one is best: free, instant, private (the file never leaves your device) and no install. For <strong>native DWG</strong>, no purely-browser tool can read the closed format — the best free options are Autodesk's own <strong>DWG TrueView</strong> on desktop, or converting DWG → DXF with the free <strong>ODA File Converter</strong> and then using this page. Be wary of "free DWG converters" that demand an email before showing your file.</p></div>
+      </details>
+
+      <details>
+        <summary>DWG to PDF vs AutoCAD PDF — what's the difference?<span class="chev">+</span></summary>
+        <div class="body"><p>They're the same output, made by different drivers. <strong>DWG To PDF.pc3</strong> is AutoCAD's original PDF driver. Newer AutoCAD versions add the <strong>"AutoCAD PDF" .pc3 presets</strong> (General Documentation, High Quality Print, Smallest File, Web and Mobile) with finer control over resolution and file size. PDFs from this page are standard vector PDFs too — any of them opens in every PDF reader, prints the same, and zooms without pixelating.</p></div>
+      </details>
+
+      <details>
+        <summary>How can I convert PDF to DWG for free?<span class="chev">+</span></summary>
+        <div class="body"><p>Use the <a href="#pdf-to-dwg">PDF to DXF tool</a> above: upload a <strong>vector PDF</strong> (one plotted from CAD software, not a scan), and it extracts the line geometry into an <strong>editable DXF</strong>. Open that DXF in AutoCAD, BricsCAD or the free LibreCAD and choose <strong>Save As → DWG</strong> — that's your native DWG, completely free. Text in the PDF is not rebuilt as CAD text; the linework is what converts.</p></div>
+      </details>
+
+      <details>
+        <summary>How do I convert DWF to PDF for free?<span class="chev">+</span></summary>
+        <div class="body"><p>Use the <a href="#dwf-to-pdf">DWF to PDF tool</a> above. <strong>DWFx</strong> files — the ZIP/XML-based DWF Autodesk has published since 2008 — convert fully in your browser, with multi-sheet files stacked onto one tall PDF page. Older <strong>classic binary DWF</strong> files can't be read by a browser; open those in the free Autodesk Design Review and print to PDF, or re-publish them as DWFx from AutoCAD.</p></div>
+      </details>
+
+      <details>
+        <summary>How do I convert DWG to JPG or PNG for free?<span class="chev">+</span></summary>
+        <div class="body"><p>Use the <a href="#dwg-to-image">DWG to JPG/PNG tool</a> above: load the DXF (save a native DWG as DXF first), pick <strong>PNG</strong> for the crispest image or a transparent background, or <strong>JPG</strong> for a smaller file, choose 1×, 2× or 3× resolution and download. 2× PNG is the sweet spot for WhatsApp and slides.</p></div>
+      </details>
+
+      <details>
+        <summary>Is batch conversion free too?<span class="chev">+</span></summary>
+        <div class="body"><p>Not in these tools — all four converters here are <strong>free for one file at a time</strong>, with no limit on how many times you use them. Converting a whole folder at once is the feature paid tools charge for. Until then, the batch guide above shows the free desktop routes: AutoCAD <code>PUBLISH</code> and the free ODA File Converter.</p></div>
+      </details>
+
+      <details>
+        <summary>Is this converter really free? Any limits or signup?<span class="chev">+</span></summary>
+        <div class="body"><p>Yes — this is the free version and there is no Pro plan, no signup, no watermark and no payment. Because DXF conversion happens on your own device, there's no server cost to recover, so there's nothing to charge for. Very large files are limited only by your device's memory.</p></div>
+      </details>
+
+      <details>
+        <summary>Is my drawing uploaded or stored anywhere?<span class="chev">+</span></summary>
+        <div class="body"><p>No — in all four tools. Your DXF, PDF or DWFx is read by JavaScript in this browser tab, drawn to the preview, and the output file is generated locally. Close the tab and it's gone. That's also why the tools work offline once the page has loaded.</p></div>
+      </details>
+
+      <details>
+        <summary>How do I convert DWG to PDF in black and white?<span class="chev">+</span></summary>
+        <div class="body"><p>Here: load the drawing and switch the colour mode to <strong>Black &amp; white</strong> before downloading. In AutoCAD: set the plot style to <code>monochrome.ctb</code> in the PLOT dialog. See the full guide above.</p></div>
+      </details>
+
+    </div>
+  </section>
+
+</div><!-- /view-home -->
+
+  <!-- ALL TOOLS PAGE -->
+  <section class="pageview" id="page-tools" hidden>
+    <span class="kw">All Tools</span>
+    <h1>All free tools</h1>
+    <div class="prose">
+      <p>Every tool on this site is free, works on a single file at a time, and runs entirely in your browser — no signup, no watermark, no payment, and your files are never uploaded to a server. Batch conversion is not part of the free tools; the <a href="#guides">batch guide</a> on the home page lists the free desktop routes.</p>
+    </div>
+    <div class="toollist" style="margin-top:22px">
+      <div class="trow">
+        <div><span class="pill live">● LIVE — FREE</span><h3>DWG / DXF to PDF</h3><p>Convert a DXF drawing to a true vector PDF. Choose A4, A3 or Letter, colour or black &amp; white, and the line weight. Native DWG files: save as DXF first — the tool explains how.</p></div>
+        <a href="#converter">Open tool →</a>
+      </div>
+      <div class="trow">
+        <div><span class="pill live">● LIVE — FREE</span><h3>PDF to DXF (saves as DWG)</h3><p>Extract the linework from a vector PDF plotted from CAD software into an editable DXF. Open the DXF in AutoCAD, BricsCAD or LibreCAD and Save As → DWG for a native file.</p></div>
+        <a href="#pdf-to-dwg">Open tool →</a>
+      </div>
+      <div class="trow">
+        <div><span class="pill live">● LIVE — FREE</span><h3>DWF to PDF</h3><p>Convert DWFx sheets — the ZIP/XML-based DWF format — to a shareable vector PDF in A4, A3 or Letter. Classic binary DWF files get the free Autodesk Design Review route instead.</p></div>
+        <a href="#dwf-to-pdf">Open tool →</a>
+      </div>
+      <div class="trow">
+        <div><span class="pill live">● LIVE — FREE</span><h3>DWG to JPG / PNG</h3><p>Export a DXF drawing as a PNG or JPG image for WhatsApp, slides and quick markups — 1×, 2× or 3× resolution, white, dark or transparent background, colour or black &amp; white.</p></div>
+        <a href="#dwg-to-image">Open tool →</a>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:26px">
+      <h2>Guides that go with the tools</h2>
+      <p>The home page also carries step-by-step guides for converting <a href="#guides">without AutoCAD</a>, plotting in AutoCAD with DWG To PDF.pc3, batch conversion, mobile conversion, black &amp; white output, and what a .pc3 file is — plus an <a href="#faq">FAQ</a> answering the most searched questions.</p>
+    </div>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <!-- ABOUT PAGE -->
+  <section class="pageview" id="page-about" hidden>
+    <span class="kw">About</span>
+    <h1>About DWG to PDF Free</h1>
+    <div class="prose">
+      <p><strong>DWG to PDF Free</strong> is a small set of free online converters for CAD drawings, built for architects, engineers, drafters, contractors and fabricators who need a drawing in a shareable format — often on a site, on a phone, or on a computer with no CAD software installed.</p>
+      <h2>What the site does</h2>
+      <p>It offers four single-file converters that run entirely in your web browser: <a href="#converter">DWG/DXF to PDF</a>, <a href="#pdf-to-dwg">PDF to DXF</a>, <a href="#dwf-to-pdf">DWF to PDF</a> and <a href="#dwg-to-image">DWG to JPG/PNG</a>. Because the conversion happens on your own device, your drawings are never uploaded, stored or seen by anyone — and the tools keep working offline once the page has loaded.</p>
+      <h2>Why free, with no signup?</h2>
+      <p>The formats these tools handle — DXF, vector PDF and DWFx — are open enough to convert locally, so running them costs nothing per file. There is no server bill to recover, so there is nothing to charge for: no Pro plan, no accounts, no watermarks and no payment. The one thing kept out of the free tools is batch conversion of whole folders; the guides on the home page show the free desktop routes for that instead.</p>
+      <h2>Honest about DWG</h2>
+      <p>DWG is Autodesk's closed binary format with no published specification, so no purely browser-based tool can read a native DWG file directly. Rather than pretend otherwise, this site converts the open DXF format in the browser and shows you the free ways to get a DWG into DXF — saving from AutoCAD, the free DWG TrueView, or the free ODA File Converter. See the <a href="#/disclaimer">Disclaimer</a> for the full picture.</p>
+      <h2>Who runs it</h2>
+      <p>DWG to PDF Free is operated by Muhammad Haroon, based in Rawalpindi, Pakistan. Questions, corrections and tool requests are welcome via the <a href="#/contact">Contact page</a>.</p>
+    </div>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <!-- CONTACT PAGE -->
+  <section class="pageview" id="page-contact" hidden>
+    <span class="kw">Contact</span>
+    <h1>Contact us</h1>
+    <div class="prose">
+      <p>Found a drawing that won't convert, spotted an error in a guide, or want to request a tool? Send a message using the form below.</p>
+    </div>
+    <form class="cform" id="contactForm" action="https://api.web3forms.com/submit" method="POST" style="margin-top:18px">
+      <input type="hidden" name="access_key" value="69f51a41-8233-4f1b-a5d2-a3ab18dfb2d3" />
+      <input type="hidden" name="subject" value="New message from DWG to PDF Free — Contact form" />
+      <input type="hidden" name="from_name" value="DWG to PDF Free" />
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div>
+        <label for="cfName">Name</label>
+        <input id="cfName" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+      </div>
+      <div>
+        <label for="cfEmail">Email</label>
+        <input id="cfEmail" name="email" type="email" autocomplete="email" required placeholder="Your email address" />
+      </div>
+      <div>
+        <label for="cfMsg">Message</label>
+        <textarea id="cfMsg" name="message" required placeholder="Type your message here — which tool, which file type, and what happened?"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" id="cfSubmit">Submit</button>
+      <div class="form-status" id="cfStatus" role="status" aria-live="polite"></div>
+    </form>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <!-- PRIVACY POLICY PAGE -->
+  <section class="pageview" id="page-privacy" hidden>
+    <span class="kw">Privacy Policy</span>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: November 26, 2026</p>
+    <div class="prose">
+      <p>This policy explains what information DWG to PDF Free does and does not collect when you use the converters and guides on this site.</p>
+      <h2>Your files are never collected</h2>
+      <p>All four converters run <strong>entirely in your browser</strong>. When you load a DXF, PDF or DWFx file, it is read by JavaScript on your own device, drawn to the preview, and the output file is generated locally. <strong>Your files are never uploaded to a server, never stored, and never seen by us or anyone else.</strong> Closing the tab removes everything.</p>
+      <h2>No accounts, no tracking cookies</h2>
+      <ul>
+        <li>There is no signup, login or user account, so we hold no names, passwords or profiles.</li>
+        <li>This site sets no cookies of its own and runs no advertising or analytics trackers.</li>
+        <li>We do not collect usage statistics about which files you convert or which tools you open.</li>
+      </ul>
+      <h2>Third-party services</h2>
+      <p>The page loads its typefaces from <strong>Google Fonts</strong>. When your browser fetches those fonts, Google receives the standard technical data any web request carries (such as your IP address and browser type) under Google's own privacy policy. No file content or conversion data is ever part of that request. Links on this site to third-party tools (such as Autodesk or ODA products) take you to those companies' sites, which have their own policies.</p>
+      <h2>Email you send us</h2>
+      <p>If you contact us by email, we receive your email address and the contents of your message, and use them only to reply and to fix the problem you reported. We do not sell email addresses or add them to marketing lists.</p>
+      <h2>Children</h2>
+      <p>This is a general-purpose work tool not directed at children, and because it collects no personal data, no special children's data is gathered either.</p>
+      <h2>Changes to this policy</h2>
+      <p>If the way the site handles data ever changes — for example, if a server-based feature is added — this page will be updated and the "last updated" date above will change before the new practice takes effect.</p>
+      <h2>Contact</h2>
+      <p>Privacy questions: send them through the form on the <a href="#/contact">Contact page</a>.</p>
+    </div>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <!-- TERMS OF USE PAGE -->
+  <section class="pageview" id="page-terms" hidden>
+    <span class="kw">Terms of Use</span>
+    <h1>Terms of Use</h1>
+    <p class="updated">Last updated: November 26, 2026</p>
+    <div class="prose">
+      <p>By using DWG to PDF Free, you agree to these terms. If you do not agree, please do not use the site.</p>
+      <h2>The service</h2>
+      <p>DWG to PDF Free provides free, browser-based, single-file converters for CAD drawings (DXF to PDF, PDF to DXF, DWFx to PDF, and DXF to JPG/PNG), together with guides and reference content. The service is provided free of charge, with no account and no payment.</p>
+      <h2>Your files and your responsibility</h2>
+      <ul>
+        <li>You keep all rights in the drawings and files you convert. Because conversion happens on your own device, we never receive a copy.</li>
+        <li>You are responsible for having the right to convert and share the files you use with these tools.</li>
+        <li><strong>Check converted output before relying on it.</strong> Conversions are produced from the geometry a file contains; always verify dimensions and content against the original drawing before using a converted file for construction, fabrication or any safety-relevant purpose.</li>
+      </ul>
+      <h2>Acceptable use</h2>
+      <ul>
+        <li>Use the tools for lawful purposes only.</li>
+        <li>Do not attempt to disrupt the site, or misrepresent converted output as original certified drawings.</li>
+        <li>Automated bulk use that degrades the service for others is not permitted; batch conversion is in any case not a feature of these free tools.</li>
+      </ul>
+      <h2>No warranty</h2>
+      <p>The site and its tools are provided <strong>"as is" and "as available", without warranties of any kind</strong>, express or implied, including fitness for a particular purpose. We do not warrant that conversions will be error-free or that the site will always be available.</p>
+      <h2>Limitation of liability</h2>
+      <p>To the maximum extent permitted by law, the operator of this site is not liable for any loss or damage arising from the use of, or inability to use, the site or any converted file — including losses caused by relying on a conversion without checking it against the original.</p>
+      <h2>Intellectual property</h2>
+      <p>The site's text, guides and design belong to the operator. DWG, DWF, AutoCAD and Autodesk are trademarks of Autodesk, Inc.; other product names mentioned are trademarks of their respective owners. This site is not affiliated with or endorsed by Autodesk. See the <a href="#/disclaimer">Disclaimer</a>.</p>
+      <h2>Changes</h2>
+      <p>These terms may be updated from time to time; the current version will always be on this page with its date. Continued use after a change means you accept the updated terms.</p>
+      <h2>Governing law</h2>
+      <p>These terms are governed by the laws of Pakistan.</p>
+      <h2>Contact</h2>
+      <p>Questions about these terms: send them through the form on the <a href="#/contact">Contact page</a>.</p>
+    </div>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <!-- DISCLAIMER PAGE -->
+  <section class="pageview" id="page-disclaimer" hidden>
+    <span class="kw">Disclaimer</span>
+    <h1>Disclaimer</h1>
+    <p class="updated">Last updated: November 26, 2026</p>
+    <div class="prose">
+      <h2>Not affiliated with Autodesk</h2>
+      <p>DWG to PDF Free is an independent site. <strong>DWG, DWF, AutoCAD, DWG TrueView and Autodesk are trademarks of Autodesk, Inc.</strong> This site is not affiliated with, sponsored by, or endorsed by Autodesk, Inc. References to Autodesk products — and to other third-party tools such as the ODA File Converter, BricsCAD and LibreCAD — are descriptive only, to help you choose a route for your file.</p>
+      <h2>Conversion limits — read this before relying on output</h2>
+      <ul>
+        <li><strong>Native DWG is not converted in the browser.</strong> DWG is a closed binary format; these tools convert the open DXF format, vector PDFs and DWFx files. Any site claiming a pure browser page reads native DWG directly should be treated with caution.</li>
+        <li><strong>PDF to DXF converts linework, not intelligence.</strong> It extracts the vector lines a PDF contains. Text is not rebuilt as editable CAD text, and layers, blocks and dimensions from the original drawing are not restored.</li>
+        <li><strong>Scanned PDFs cannot be converted</strong> by the PDF to DXF tool — a scan is a picture and contains no lines to extract.</li>
+        <li><strong>Classic binary DWF</strong> (the older W2D format) cannot be read in a browser; only DWFx files convert here.</li>
+        <li><strong>Complex drawings may convert partially.</strong> Unusual entity types, external references (xrefs) and some splines may be simplified or omitted.</li>
+      </ul>
+      <h2>Verify before you build</h2>
+      <p>Converted files are for sharing, review and reference. <strong>Always check a converted file against the original drawing</strong> — dimensions, scale and content — before using it for construction, fabrication, quotation or any safety-relevant decision. The operator is not responsible for losses arising from unverified conversions; see the <a href="#/terms">Terms of Use</a>.</p>
+      <h2>External links</h2>
+      <p>Guides on this site mention and may link to third-party software and websites. We do not control those products, do not guarantee their pricing or availability (including whether they remain free), and are not responsible for their content or behaviour.</p>
+      <h2>Accuracy of guides</h2>
+      <p>The guides are written to be accurate at the time of writing, but CAD software menus and commands change between versions. If a step differs in your version, your software's own help documentation is the authority.</p>
+    </div>
+    <div class="page-back"><a class="btn btn-ghost" href="#/">← Back to the converters</a></div>
+  </section>
+
+  <footer>
+    <div class="cols">
+      <a href="#converter">DWG to PDF Converter</a>
+      <a href="#pdf-to-dwg">PDF to DXF</a>
+      <a href="#dwf-to-pdf">DWF to PDF</a>
+      <a href="#dwg-to-image">DWG to JPG / PNG</a>
+      <a href="#/tools">All Tools</a>
+      <a href="#guides">Convert without AutoCAD</a>
+      <a href="#guides">Batch convert guide</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="cols">
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+      <a href="#/privacy">Privacy Policy</a>
+      <a href="#/terms">Terms of Use</a>
+      <a href="#/disclaimer">Disclaimer</a>
+    </div>
+    <p>DWG to PDF Free — four free online converters for CAD drawings, with guides for native DWG files. DWG, DWF and AutoCAD are trademarks of Autodesk, Inc. This site is not affiliated with Autodesk. All files are processed entirely in your browser.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- State ---------- */
+var drawing = null; // {entities:[], bounds:{}, name:"", textItems:[]}
+var bwMode = false;
+
+/* ---------- ACI colour table (subset) ---------- */
+var ACI = {1:"#ff0000",2:"#ffff00",3:"#00ff00",4:"#00ffff",5:"#0000ff",6:"#ff00ff",7:"#333333",8:"#808080",9:"#c0c0c0",
+10:"#ff0000",11:"#ffaaaa",20:"#ff5500",30:"#ff7f00",40:"#ffbf00",50:"#ffff00",60:"#bfff00",70:"#7fff00",90:"#00ff00",
+110:"#00ff7f",130:"#00ffff",150:"#007fff",170:"#0000ff",190:"#7f00ff",210:"#ff00ff",230:"#ff007f",250:"#333333",251:"#505050",252:"#696969",253:"#828282",254:"#bebebe",255:"#ffffff"};
+function aciColor(idx, layerColor){
+  if(idx===0 && layerColor) return layerColor; // ByLayer
+  if(idx===256 && layerColor) return layerColor;
+  if(idx===7) return "#333333";
+  return ACI[idx] || "#333333";
+}
+
+/* ---------- DXF parser ---------- */
+function parseDXF(text){
+  var lines = text.split(/\r\n|\r|\n/);
+  var pairs = [];
+  for(var i=0;i+1<lines.length;i+=2){
+    var code = parseInt(lines[i].trim(),10);
+    if(isNaN(code)) continue;
+    pairs.push([code, lines[i+1]]);
+  }
+  var entities=[], layers={}, curLayerColor=null;
+  var inEntities=false, cur=null, curLayer=null, i2, code2, val2;
+  function flush(){
+    if(cur && cur.type){ entities.push(cur); }
+    cur=null;
+  }
+  // First pass: layer colours from TABLES
+  var inLayerTable=false, lname=null;
+  for(i2=0;i2<pairs.length;i2++){
+    code2=pairs[i2][0]; val2=pairs[i2][1];
+    if(code2===2 && val2.trim()==="LAYER"){ inLayerTable=true; }
+    if(code2===0 && val2.trim()==="ENDTAB"){ inLayerTable=false; }
+    if(inLayerTable && code2===0 && val2.trim()==="LAYER"){ lname=null; }
+    if(inLayerTable && code2===2 && lname===null){ lname=val2.trim(); }
+    if(inLayerTable && code2===62 && lname){ layers[lname]=aciColor(Math.abs(parseInt(val2,10))||7,null); }
+  }
+  for(i2=0;i2<pairs.length;i2++){
+    code2=pairs[i2][0]; val2=pairs[i2][1];
+    var v = (typeof val2==="string") ? val2.trim() : val2;
+    if(code2===2 && v==="ENTITIES"){ inEntities=true; continue; }
+    if(code2===2 && v==="ENDSEC" && inEntities){ flush(); inEntities=false; continue; }
+    if(!inEntities) continue;
+    if(code2===0){
+      flush();
+      var t=v.toUpperCase();
+      if(["LINE","CIRCLE","ARC","POINT","LWPOLYLINE","POLYLINE","TEXT","MTEXT","ELLIPSE","SPLINE"].indexOf(t)>=0){
+        cur={type:t, layer:"0", color:7, verts:[], cx:0, cy:0, r:0, a1:0, a2:0, x:0, y:0, closed:false, text:"", h:2.5};
+        curLayer=null;
+      }
+      continue;
+    }
+    if(!cur) continue;
+    var num=parseFloat(val2);
+    switch(code2){
+      case 8: cur.layer=v; break;
+      case 62: cur.color=parseInt(val2,10)||7; break;
+      case 10:
+        if(cur.type==="POLYLINE"||cur.type==="LWPOLYLINE"){ cur.verts.push([num,0]); }
+        else { cur.x=num; cur.cx=num; }
+        break;
+      case 20:
+        if((cur.type==="POLYLINE"||cur.type==="LWPOLYLINE") && cur.verts.length){ cur.verts[cur.verts.length-1][1]=num; }
+        else { cur.y=num; cur.cy=num; }
+        break;
+      case 11: cur.x2=num; break;
+      case 21: cur.y2=num; break;
+      case 40: if(cur.type==="CIRCLE"||cur.type==="ARC") cur.r=num; else cur.h=num; break;
+      case 50: cur.a1=num; break;
+      case 51: cur.a2=num; break;
+      case 70: if(parseInt(val2,10)&1) cur.closed=true; break;
+      case 1: cur.text=v; break;
+    }
+  }
+  flush();
+  // Resolve colours + bounds
+  var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+  function grow(x,y){ if(x<minX)minX=x; if(y<minY)minY=y; if(x>maxX)maxX=x; if(y>maxY)maxY=y; }
+  entities.forEach(function(e){
+    e.stroke = aciColor(e.color, layers[e.layer]);
+    if(e.type==="LINE"){ grow(e.x,e.y); grow(e.x2||e.x, e.y2||e.y); }
+    else if(e.type==="CIRCLE"||e.type==="ARC"){ grow(e.cx-e.r,e.cy-e.r); grow(e.cx+e.r,e.cy+e.r); }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){ e.verts.forEach(function(p){ grow(p[0],p[1]); }); }
+    else if(e.type==="POINT"||e.type==="TEXT"){ grow(e.x,e.y); }
+    else if(e.type==="ELLIPSE"){ grow(e.x- (e.r||10), e.y-(e.r||10)); grow(e.x+(e.r||10), e.y+(e.r||10)); }
+  });
+  if(minX===Infinity){ minX=0;minY=0;maxX=100;maxY=100; }
+  return {entities:entities, bounds:{minX:minX,minY:minY,maxX:maxX,maxY:maxY}};
+}
+
+/* ---------- Sample DXF builders ---------- */
+function dxfHeader(){ return "0\nSECTION\n2\nENTITIES\n"; }
+function dxfFooter(){ return "0\nENDSEC\n0\nEOF\n"; }
+function L(x1,y1,x2,y2,c,layer){ return "0\nLINE\n8\n"+(layer||"0")+"\n62\n"+(c||7)+"\n10\n"+x1+"\n20\n"+y1+"\n11\n"+x2+"\n21\n"+y2+"\n"; }
+function C(cx,cy,r,c,layer){ return "0\nCIRCLE\n8\n"+(layer||"0")+"\n62\n"+(c||7)+"\n10\n"+cx+"\n20\n"+cy+"\n40\n"+r+"\n"; }
+function A(cx,cy,r,a1,a2,c,layer){ return "0\nARC\n8\n"+(layer||"0")+"\n62\n"+(c||7)+"\n10\n"+cx+"\n20\n"+cy+"\n40\n"+r+"\n50\n"+a1+"\n51\n"+a2+"\n"; }
+function T(x,y,h,str,c,layer){ return "0\nTEXT\n8\n"+(layer||"0")+"\n62\n"+(c||7)+"\n10\n"+x+"\n20\n"+y+"\n40\n"+h+"\n1\n"+str+"\n"; }
+function RECT(x,y,w,h,c,layer){ return L(x,y,x+w,y,c,layer)+L(x+w,y,x+w,y+h,c,layer)+L(x+w,y+h,x,y+h,c,layer)+L(x,y+h,x,y,c,layer); }
+
+function sampleFloor(){
+  var s=dxfHeader();
+  // outer walls (double line)
+  s+=RECT(0,0,120,80,7,"WALLS")+RECT(4,4,112,72,7,"WALLS");
+  // inner partitions
+  s+=L(60,4,60,50,7,"WALLS")+L(60,62,60,76,7,"WALLS")+L(4,50,60,50,7,"WALLS")+L(76,50,116,50,7,"WALLS")+L(88,50,88,76,7,"WALLS");
+  // door swings
+  s+=A(60,50,12,0,90,3,"DOORS")+L(60,50,72,50,3,"DOORS");
+  s+=A(88,50,10,180,270,3,"DOORS");
+  // windows (triple lines on outer wall)
+  s+=L(14,78,44,78,5,"WIN")+L(14,82,44,82,5,"WIN")+L(14,80,44,80,5,"WIN");
+  s+=L(78,-2,108,-2,5,"WIN")+L(78,2,108,2,5,"WIN");
+  // kitchen counter + bath fixtures
+  s+=RECT(64,54,26,10,4,"FIXT")+C(97,63,6,4,"FIXT")+RECT(92,54,16,6,4,"FIXT");
+  s+=RECT(8,54,20,14,4,"FIXT")+C(50,68,5,4,"FIXT");
+  // labels
+  s+=T(14,26,5,"LIVING",7,"TEXT")+T(70,26,5,"KITCHEN",7,"TEXT")+T(12,60,4,"BEDROOM",7,"TEXT")+T(92,58,3.4,"BATH",7,"TEXT")+T(68,60,3.4,"BED 2",7,"TEXT");
+  // dimension line
+  s+=L(0,-10,120,-10,1,"DIMS")+L(0,-13,0,-7,1,"DIMS")+L(120,-13,120,-7,1,"DIMS")+T(52,-16,4,"12000",1,"DIMS");
+  return s+dxfFooter();
+}
+function sampleFlange(){
+  var s=dxfHeader();
+  s+=C(0,0,50,7,"OUTLINE")+C(0,0,42,7,"OUTLINE")+C(0,0,20,7,"BORE")+C(0,0,19,3,"BORE");
+  // bolt holes on PCD 84 (r=42 -> use 38)
+  for(var k=0;k<8;k++){ var a=k*Math.PI/4; s+=C((38*Math.cos(a)).toFixed(2),(38*Math.sin(a)).toFixed(2),5,5,"HOLES"); }
+  // centerlines
+  s+=L(-58,0,58,0,1,"CENTER")+L(0,-58,0,58,1,"CENTER");
+  s+=T(-56,54,5,"FLANGE DN100",7,"TEXT")+T(-56,-64,4,"8x HOLES ON PCD 76",7,"TEXT");
+  return s+dxfFooter();
+}
+function sampleBracket(){
+  var s=dxfHeader();
+  s+=RECT(0,0,140,90,7,"OUTLINE");
+  s+=RECT(8,8,124,74,3,"OUTLINE");
+  // corner holes
+  [[20,20],[120,20],[20,70],[120,70]].forEach(function(p){ s+=C(p[0],p[1],7,5,"HOLES")+C(p[0],p[1],3,5,"HOLES"); });
+  // centre slot
+  s+=L(45,38,95,38,7,"SLOT")+L(45,52,95,52,7,"SLOT")+A(45,45,7,90,270,7,"SLOT")+A(95,45,7,270,90,7,"SLOT");
+  // centerlines
+  s+=L(-8,45,148,45,1,"CENTER")+L(70,-8,70,98,1,"CENTER");
+  s+=T(38,100,5,"BRACKET PLATE t=6",7,"TEXT")+T(46,-16,4,"4x DIA 14 HOLES",7,"TEXT");
+  return s+dxfFooter();
+}
+var SAMPLES={ floor:{name:"Sample — Floor Plan.dxf", fn:sampleFloor}, flange:{name:"Sample — Flange.dxf", fn:sampleFlange}, bracket:{name:"Sample — Bracket Plate.dxf", fn:sampleBracket} };
+
+/* ---------- Preview rendering ---------- */
+var canvas=document.getElementById("preview"), ctx=canvas.getContext("2d");
+function render(){
+  if(!drawing) return;
+  var b=drawing.bounds, dw=b.maxX-b.minX||1, dh=b.maxY-b.minY||1;
+  var W=900,H=620,pad=46;
+  var scale=Math.min((W-pad*2)/dw,(H-pad*2)/dh);
+  var ox=pad+(W-pad*2-dw*scale)/2, oy=pad+(H-pad*2-dh*scale)/2;
+  function X(x){ return ox+(x-b.minX)*scale; }
+  function Y(y){ return H-(oy+(y-b.minY)*scale); }
+  ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,H);
+  var lw=parseFloat(document.getElementById("weight").value);
+  ctx.lineWidth=Math.max(1,lw*1.4); ctx.lineCap="round";
+  drawing.entities.forEach(function(e){
+    ctx.strokeStyle = bwMode ? "#111111" : (e.stroke==="#ffffff" ? "#333333" : e.stroke);
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.beginPath();
+    if(e.type==="LINE"){ ctx.moveTo(X(e.x),Y(e.y)); ctx.lineTo(X(e.x2||e.x),Y(e.y2||e.y)); ctx.stroke(); }
+    else if(e.type==="CIRCLE"){ ctx.arc(X(e.cx),Y(e.cy),e.r*scale,0,Math.PI*2); ctx.stroke(); }
+    else if(e.type==="ARC"){
+      var a1=e.a1*Math.PI/180, a2=e.a2*Math.PI/180;
+      ctx.arc(X(e.cx),Y(e.cy),e.r*scale,-a2,-a1); ctx.stroke();
+    }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){
+      if(e.verts.length){ ctx.moveTo(X(e.verts[0][0]),Y(e.verts[0][1])); for(var j=1;j<e.verts.length;j++) ctx.lineTo(X(e.verts[j][0]),Y(e.verts[j][1])); if(e.closed) ctx.closePath(); ctx.stroke(); }
+    }
+    else if(e.type==="POINT"){ ctx.fillRect(X(e.x)-2,Y(e.y)-2,4,4); }
+    else if(e.type==="TEXT"&&e.text){ ctx.font="600 "+Math.max(9,e.h*scale)+"px 'IBM Plex Sans',sans-serif"; ctx.fillText(e.text, X(e.x), Y(e.y)); }
+  });
+  var stats=document.getElementById("stageStats");
+  stats.textContent = drawing.entities.length+" entities · "+dw.toFixed(0)+" × "+dh.toFixed(0)+" units";
+}
+
+/* ---------- PDF generation (hand-rolled vector PDF) ---------- */
+function escPDF(s){ return String(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)"); }
+function hexRGB(hex){
+  hex=(hex||"#333333").replace("#","");
+  if(hex.length===3) hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+  var n=parseInt(hex,16);
+  return [((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255];
+}
+function buildPDF(){
+  var papers={ a4:[841.89,595.28], a3:[1190.55,841.89], letter:[792,612] };
+  var ps=papers[document.getElementById("paper").value]||papers.a4;
+  var PW=ps[0], PH=ps[1], M=36;
+  var b=drawing.bounds, dw=b.maxX-b.minX||1, dh=b.maxY-b.minY||1;
+  var scale=Math.min((PW-M*2)/dw,(PH-M*2)/dh);
+  var ox=M+(PW-M*2-dw*scale)/2, oy=M+(PH-M*2-dh*scale)/2;
+  function X(x){ return ox+(x-b.minX)*scale; }
+  function Y(y){ return oy+(y-b.minY)*scale; }
+  var lw=parseFloat(document.getElementById("weight").value);
+  var out=[]; var f=function(n){ return Math.round(n*100)/100; };
+  drawing.entities.forEach(function(e){
+    var col = bwMode ? [0,0,0] : hexRGB(e.stroke==="#ffffff" ? "#333333" : e.stroke);
+    out.push(f(col[0])+" "+f(col[1])+" "+f(col[2])+" RG "+lw+" w 1 J 1 j");
+    if(e.type==="LINE"){ out.push(f(X(e.x))+" "+f(Y(e.y))+" m "+f(X(e.x2||e.x))+" "+f(Y(e.y2||e.y))+" l S"); }
+    else if(e.type==="CIRCLE"||e.type==="ARC"){
+      var a0 = e.type==="CIRCLE"?0:(e.a1||0), a1 = e.type==="CIRCLE"?360:(e.a2||0);
+      var steps=Math.max(24,Math.min(96,Math.ceil(Math.abs(a1-a0)/4)));
+      for(var s2=0;s2<=steps;s2++){
+        var ang=(a0+(a1-a0)*s2/steps)*Math.PI/180;
+        var px=X(e.cx+e.r*Math.cos(ang)), py=Y(e.cy+e.r*Math.sin(ang));
+        out.push(f(px)+" "+f(py)+(s2===0?" m":" l"));
+      }
+      out.push("S");
+    }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){
+      if(!e.verts.length) return;
+      e.verts.forEach(function(p,idx){ out.push(f(X(p[0]))+" "+f(Y(p[1]))+(idx===0?" m":" l")); });
+      if(e.closed) out.push("h");
+      out.push("S");
+    }
+    else if(e.type==="POINT"){ out.push(f(X(e.x)-lw)+" "+f(Y(e.y)-lw)+" "+(lw*2)+" "+(lw*2)+" re f"); }
+    else if(e.type==="TEXT"&&e.text){
+      var fs=Math.max(6,(e.h||2.5)*scale);
+      out.push("BT /F1 "+f(fs)+" Tf "+f(col[0])+" "+f(col[1])+" "+f(col[2])+" rg "+f(X(e.x))+" "+f(Y(e.y))+" Td ("+escPDF(e.text)+") Tj ET");
+    }
+  });
+  var content=out.join("\n");
+  var objs=[];
+  objs[1]="<< /Type /Catalog /Pages 2 0 R >>";
+  objs[2]="<< /Type /Pages /Kids [3 0 R] /Count 1 >>";
+  objs[3]="<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+PW+" "+PH+"] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>";
+  objs[4]="<< /Length "+content.length+" >>\nstream\n"+content+"\nendstream";
+  objs[5]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>";
+  var pdf="%PDF-1.4\n", offsets=[0];
+  for(var i=1;i<=5;i++){ offsets[i]=pdf.length; pdf+=i+" 0 obj\n"+objs[i]+"\nendobj\n"; }
+  var xrefPos=pdf.length;
+  pdf+="xref\n0 6\n0000000000 65535 f \n";
+  for(var j=1;j<=5;j++){ pdf+=("0000000000"+offsets[j]).slice(-10)+" 00000 n \n"; }
+  pdf+="trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n"+xrefPos+"\n%%EOF";
+  return new Blob([pdf],{type:"application/pdf"});
+}
+
+/* ---------- Wiring ---------- */
+var drop=document.getElementById("drop"), fileInput=document.getElementById("fileInput");
+var dlBtn=document.getElementById("downloadBtn"), errMsg=document.getElementById("errMsg"), dwgMsg=document.getElementById("dwgMsg");
+var fileInfo=document.getElementById("fileInfo"), emptyNote=document.getElementById("emptyNote");
+
+function showError(t){ errMsg.textContent=t; errMsg.classList.add("show"); }
+function clearMsgs(){ errMsg.classList.remove("show"); dwgMsg.classList.remove("show"); }
+
+function loadDrawing(dxfText, name){
+  clearMsgs();
+  try{
+    var d=parseDXF(dxfText);
+    if(!d.entities.length){ showError("No drawable entities were found in that file. Check it's a valid DXF (ASCII) with an ENTITIES section."); return; }
+    drawing=d; drawing.name=name;
+    document.getElementById("stageTitle").textContent=name;
+    fileInfo.innerHTML="📄 <strong>"+name.replace(/</g,"&lt;")+"</strong> — loaded, "+d.entities.length+" entities";
+    fileInfo.classList.add("show");
+    emptyNote.style.display="none"; canvas.style.display="block";
+    dlBtn.disabled=false;
+    render();
+  }catch(ex){ showError("Could not read that file: "+ex.message); }
+}
+function handleFile(file){
+  if(!file) return;
+  var name=file.name, lower=name.toLowerCase();
+  if(lower.endsWith(".dwg")){
+    clearMsgs(); dwgMsg.classList.add("show");
+    fileInfo.innerHTML="📄 <strong>"+name.replace(/</g,"&lt;")+"</strong> — native DWG detected (binary format)";
+    fileInfo.classList.add("show");
+    return;
+  }
+  var reader=new FileReader();
+  reader.onload=function(){ loadDrawing(String(reader.result), name); };
+  reader.onerror=function(){ showError("The file could not be read by your browser."); };
+  reader.readAsText(file);
+}
+drop.addEventListener("click",function(){ fileInput.click(); });
+drop.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fileInput.click(); } });
+fileInput.addEventListener("change",function(){ handleFile(fileInput.files[0]); fileInput.value=""; });
+["dragover","dragenter"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+["dragleave","drop"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+drop.addEventListener("drop",function(e){ var f=e.dataTransfer.files && e.dataTransfer.files[0]; handleFile(f); });
+
+document.querySelectorAll(".sample-btn").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var s=SAMPLES[btn.getAttribute("data-sample")];
+    if(s) loadDrawing(s.fn(), s.name);
+  });
+});
+
+var segColor=document.getElementById("segColor"), segBW=document.getElementById("segBW");
+segColor.addEventListener("click",function(){ bwMode=false; segColor.classList.add("on"); segBW.classList.remove("on"); render(); });
+segBW.addEventListener("click",function(){ bwMode=true; segBW.classList.add("on"); segColor.classList.remove("on"); render(); });
+document.getElementById("weight").addEventListener("change",render);
+document.getElementById("paper").addEventListener("change",function(){ /* paper affects PDF only */ });
+
+dlBtn.addEventListener("click",function(){
+  if(!drawing) return;
+  var blob=buildPDF();
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url;
+  a.download=(drawing.name||"drawing").replace(/\.(dxf|dwg)$/i,"")+".pdf";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); },4000);
+});
+
+/* Shared with the extra tools below */
+window.__cadShared = { parseDXF: parseDXF, SAMPLES: SAMPLES, buildPDFFrom: function(drw, paperVal, bw, lwVal){
+  var keep = drawing, keepBw = bwMode;
+  drawing = drw; bwMode = !!bw;
+  var paperEl = document.getElementById("paper"); var keepPaper = paperEl.value; paperEl.value = paperVal || keepPaper;
+  var weightEl = document.getElementById("weight"); var keepW = weightEl.value; if(lwVal) weightEl.value = String(lwVal);
+  var blob = buildPDF();
+  paperEl.value = keepPaper; weightEl.value = keepW;
+  drawing = keep; bwMode = keepBw;
+  return blob;
+}, samplePDFBlob: function(){
+  var keep = drawing;
+  var d = parseDXF(SAMPLES.flange.fn()); d.name = "Flange (vector PDF sample).pdf";
+  drawing = d;
+  var blob = buildPDF();
+  drawing = keep;
+  return { blob: blob, name: d.name };
+} };
+})();
+</script>
+<script>
+(function(){
+"use strict";
+var SHARED = window.__cadShared || {};
+function $(id){ return document.getElementById(id); }
+function downloadBlob(blob, filename){
+  var url=URL.createObjectURL(blob), a=document.createElement("a");
+  a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); },4000);
+}
+function boundsOf(entities){
+  var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+  function g(x,y){ if(x<minX)minX=x; if(y<minY)minY=y; if(x>maxX)maxX=x; if(y>maxY)maxY=y; }
+  entities.forEach(function(e){
+    if(e.type==="LINE"){ g(e.x,e.y); g(e.x2||e.x,e.y2||e.y); }
+    else if(e.type==="CIRCLE"||e.type==="ARC"){ g(e.cx-e.r,e.cy-e.r); g(e.cx+e.r,e.cy+e.r); }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){ (e.verts||[]).forEach(function(p){ g(p[0],p[1]); }); }
+    else { g(e.x||0,e.y||0); }
+  });
+  if(minX===Infinity){ minX=0;minY=0;maxX=100;maxY=100; }
+  return {minX:minX,minY:minY,maxX:maxX,maxY:maxY};
+}
+function drawEntities(cv, entities, opts){
+  opts=opts||{};
+  var c=cv.getContext("2d"), W=cv.width, H=cv.height;
+  var b=boundsOf(entities), dw=b.maxX-b.minX||1, dh=b.maxY-b.minY||1;
+  var pad=Math.round(W*0.05);
+  var scale=Math.min((W-pad*2)/dw,(H-pad*2)/dh);
+  var ox=pad+(W-pad*2-dw*scale)/2, oy=pad+(H-pad*2-dh*scale)/2;
+  function X(x){ return ox+(x-b.minX)*scale; }
+  function Y(y){ return H-(oy+(y-b.minY)*scale); }
+  if(opts.bg){ c.fillStyle=opts.bg; c.fillRect(0,0,W,H); }
+  else { c.clearRect(0,0,W,H); if(!opts.transparent){ c.fillStyle="#ffffff"; c.fillRect(0,0,W,H); } }
+  c.lineWidth=Math.max(1,(opts.lw||1.4)); c.lineCap="round"; c.lineJoin="round";
+  entities.forEach(function(e){
+    var col = e.stroke || "#333333";
+    if(opts.bw) col = opts.dark ? "#f2f2f2" : "#111111";
+    else if(opts.dark && (col==="#333333"||col==="#000000")) col="#e8e8e8";
+    else if(col==="#ffffff" && !opts.dark) col="#333333";
+    c.strokeStyle=col; c.fillStyle=col;
+    c.beginPath();
+    if(e.type==="LINE"){ c.moveTo(X(e.x),Y(e.y)); c.lineTo(X(e.x2||e.x),Y(e.y2||e.y)); c.stroke(); }
+    else if(e.type==="CIRCLE"){ c.arc(X(e.cx),Y(e.cy),Math.abs(e.r*scale),0,Math.PI*2); c.stroke(); }
+    else if(e.type==="ARC"){ var a1=(e.a1||0)*Math.PI/180, a2=(e.a2||0)*Math.PI/180; c.arc(X(e.cx),Y(e.cy),Math.abs(e.r*scale),-a2,-a1); c.stroke(); }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){
+      var v=e.verts||[]; if(v.length){ c.moveTo(X(v[0][0]),Y(v[0][1])); for(var j=1;j<v.length;j++) c.lineTo(X(v[j][0]),Y(v[j][1])); if(e.closed) c.closePath(); c.stroke(); }
+    }
+    else if(e.type==="POINT"){ c.fillRect(X(e.x)-2,Y(e.y)-2,4,4); }
+    else if(e.type==="TEXT"&&e.text){ c.font="600 "+Math.max(9,(e.h||3)*scale)+"px 'IBM Plex Sans',sans-serif"; c.fillText(e.text, X(e.x), Y(e.y)); }
+  });
+  return b;
+}
+function wireDrop(dropEl, inputEl, onFile){
+  if(!dropEl) return;
+  dropEl.addEventListener("click",function(){ inputEl.click(); });
+  dropEl.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); inputEl.click(); } });
+  inputEl.addEventListener("change",function(){ if(inputEl.files[0]) onFile(inputEl.files[0]); inputEl.value=""; });
+  ["dragover","dragenter"].forEach(function(ev){ dropEl.addEventListener(ev,function(e){ e.preventDefault(); dropEl.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(ev){ dropEl.addEventListener(ev,function(e){ e.preventDefault(); dropEl.classList.remove("over"); }); });
+  dropEl.addEventListener("drop",function(e){ var f=e.dataTransfer.files && e.dataTransfer.files[0]; if(f) onFile(f); });
+}
+function entitiesToDXF(entities){
+  function n(v){ return Math.round((+v||0)*1000)/1000; }
+  var s="0\nSECTION\n2\nENTITIES\n";
+  entities.forEach(function(e){
+    if(e.type==="LINE"){ s+="0\nLINE\n8\n0\n10\n"+n(e.x)+"\n20\n"+n(e.y)+"\n11\n"+n(e.x2||e.x)+"\n21\n"+n(e.y2||e.y)+"\n"; }
+    else if(e.type==="CIRCLE"){ s+="0\nCIRCLE\n8\n0\n10\n"+n(e.cx)+"\n20\n"+n(e.cy)+"\n40\n"+n(e.r)+"\n"; }
+    else if(e.type==="ARC"){ s+="0\nARC\n8\n0\n10\n"+n(e.cx)+"\n20\n"+n(e.cy)+"\n40\n"+n(e.r)+"\n50\n"+n(e.a1||0)+"\n51\n"+n(e.a2||0)+"\n"; }
+    else if(e.type==="LWPOLYLINE"||e.type==="POLYLINE"){
+      var v=e.verts||[]; if(v.length<2) return;
+      s+="0\nLWPOLYLINE\n8\n0\n90\n"+v.length+"\n70\n"+(e.closed?1:0)+"\n";
+      v.forEach(function(p){ s+="10\n"+n(p[0])+"\n20\n"+n(p[1])+"\n"; });
+    }
+    else if(e.type==="TEXT"&&e.text){ s+="0\nTEXT\n8\n0\n10\n"+n(e.x)+"\n20\n"+n(e.y)+"\n40\n"+n(e.h||2.5)+"\n1\n"+String(e.text).replace(/\n/g," ")+"\n"; }
+    else if(e.type==="POINT"){ s+="0\nPOINT\n8\n0\n10\n"+n(e.x)+"\n20\n"+n(e.y)+"\n"; }
+  });
+  return s+"0\nENDSEC\n0\nEOF\n";
+}
+async function inflateBytes(bytes, mode){
+  var ds=new DecompressionStream(mode);
+  var stream=new Blob([bytes]).stream().pipeThrough(ds);
+  var buf=await new Response(stream).arrayBuffer();
+  return new Uint8Array(buf);
+}
+async function inflateAuto(bytes){
+  try{ return await inflateBytes(bytes,"deflate"); }catch(e1){
+    try{ return await inflateBytes(bytes,"deflate-raw"); }catch(e2){ return bytes; }
+  }
+}
+
+/* ================= PDF -> DXF ================= */
+function mm(A,B){ return [A[0]*B[0]+A[2]*B[1], A[1]*B[0]+A[3]*B[1], A[0]*B[2]+A[2]*B[3], A[1]*B[2]+A[3]*B[3], A[0]*B[4]+A[2]*B[5]+A[4], A[1]*B[4]+A[3]*B[5]+A[5]]; }
+async function parseVectorPDF(buf){
+  var bytes=new Uint8Array(buf);
+  var latin=new TextDecoder("latin1").decode(bytes);
+  var contents=[], idx=0;
+  while(true){
+    var sIdx=latin.indexOf("stream", idx); if(sIdx<0) break;
+    var dStart=sIdx+6;
+    if(latin[dStart]==="\r"&&latin[dStart+1]==="\n") dStart+=2; else if(latin[dStart]==="\n"||latin[dStart]==="\r") dStart+=1;
+    var eIdx=latin.indexOf("endstream", dStart); if(eIdx<0) break;
+    var dict=latin.slice(Math.max(0,sIdx-800), sIdx);
+    var raw=bytes.slice(dStart, eIdx);
+    // trim trailing newline bytes belonging to endstream delimiter
+    while(raw.length && (raw[raw.length-1]===10||raw[raw.length-1]===13)) raw=raw.slice(0,raw.length-1);
+    idx=eIdx+9;
+    if(/\/Subtype\s*\/Image/.test(dict)) continue;
+    var data=raw;
+    if(/FlateDecode/.test(dict)){ data=await inflateAuto(raw); }
+    var txt=new TextDecoder("latin1").decode(data);
+    if(/[\s](m|l|re|c|S)\s/.test(txt) || /(^|\n)[-\d.]+\s+[-\d.]+\s+m(\s|$)/.test(txt)) contents.push(txt);
+  }
+  var entities=[];
+  contents.forEach(function(content){
+    var clean=content.replace(/\((?:\\.|[^()\\])*\)/g," ").replace(/<[^>]*>/g," ");
+    var tokens=clean.match(/-?\d+\.?\d*|-?\.\d+|[A-Za-z'*"]{1,3}/g)||[];
+    var nums=[], ctm=[1,0,0,1,0,0], stack=[], path=[], curPt=null;
+    function tp(x,y){ return [ctm[0]*x+ctm[2]*y+ctm[4], ctm[1]*x+ctm[3]*y+ctm[5]]; }
+    function flush(closeAll){
+      path.forEach(function(sp){
+        var pts=sp.pts.filter(function(p,i){ return i===0 || Math.abs(p[0]-sp.pts[i-1][0])>0.01 || Math.abs(p[1]-sp.pts[i-1][1])>0.01; });
+        var closed=sp.closed||closeAll;
+        if(closed && pts.length>2){ var f=pts[0], l=pts[pts.length-1]; if(Math.abs(f[0]-l[0])<0.02&&Math.abs(f[1]-l[1])<0.02) pts=pts.slice(0,-1); }
+        if(pts.length===2) entities.push({type:"LINE",x:pts[0][0],y:pts[0][1],x2:pts[1][0],y2:pts[1][1],stroke:"#333333"});
+        else if(pts.length>2) entities.push({type:"LWPOLYLINE",verts:pts,closed:!!closed,stroke:"#333333"});
+      });
+      path=[];
+    }
+    function addPt(p){ if(path.length) path[path.length-1].pts.push(p); curPt=p; }
+    for(var ti=0;ti<tokens.length;ti++){
+      var tok=tokens[ti];
+      if(/^-?[\d.]/.test(tok)){ nums.push(parseFloat(tok)); continue; }
+      var op=tok;
+      if(op==="m"&&nums.length>=2){ var p=tp(nums[nums.length-2],nums[nums.length-1]); path.push({pts:[p],closed:false}); curPt=p; }
+      else if(op==="l"&&nums.length>=2){ addPt(tp(nums[nums.length-2],nums[nums.length-1])); }
+      else if(op==="c"&&nums.length>=6&&curPt){
+        var p1=tp(nums[nums.length-6],nums[nums.length-5]),p2=tp(nums[nums.length-4],nums[nums.length-3]),p3=tp(nums[nums.length-2],nums[nums.length-1]),p0=curPt;
+        for(var s2=1;s2<=8;s2++){ var t=s2/8,u=1-t;
+          addPt([u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0], u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]]);
+        }
+      }
+      else if((op==="v"||op==="y")&&nums.length>=4&&curPt){ addPt(tp(nums[nums.length-2],nums[nums.length-1])); }
+      else if(op==="h"){ if(path.length) path[path.length-1].closed=true; }
+      else if(op==="re"&&nums.length>=4){
+        var x=nums[nums.length-4],y=nums[nums.length-3],w=nums[nums.length-2],h=nums[nums.length-1];
+        path.push({pts:[tp(x,y),tp(x+w,y),tp(x+w,y+h),tp(x,y+h)],closed:true}); curPt=tp(x,y);
+      }
+      else if(op==="S"||op==="s"){ flush(op==="s"); }
+      else if(op==="f"||op==="F"||op==="f*"||op==="B"||op==="B*"||op==="b"||op==="b*"){ flush(true); }
+      else if(op==="n"){ path=[]; }
+      else if(op==="q"){ stack.push(ctm.slice()); }
+      else if(op==="Q"){ if(stack.length) ctm=stack.pop(); }
+      else if(op==="cm"&&nums.length>=6){ var m=nums.slice(nums.length-6); ctm=mm(m,ctm); }
+      nums=[];
+    }
+    flush(false);
+  });
+  return entities;
+}
+var p2dDrawing=null;
+function p2dSetDrawing(entities, name){
+  if(!entities.length){ var e=$("p2dErr"); e.textContent="No vector linework was found in that PDF. It is most likely a scanned or image PDF — only PDFs plotted from CAD software contain lines that can be converted."; e.classList.add("show"); return; }
+  $("p2dErr").classList.remove("show");
+  p2dDrawing={entities:entities,name:name};
+  $("p2dEmpty").style.display="none"; var cv=$("p2dCanvas"); cv.style.display="block";
+  drawEntities(cv, entities, {});
+  var b=boundsOf(entities);
+  $("p2dTitle").textContent=name;
+  $("p2dStats").textContent=entities.length+" entities extracted · "+(b.maxX-b.minX).toFixed(0)+" × "+(b.maxY-b.minY).toFixed(0)+" units";
+  var info=$("p2dInfo"); info.innerHTML="📄 <strong>"+name.replace(/</g,"&lt;")+"</strong> — "+entities.length+" entities extracted, ready to download as editable DXF"; info.classList.add("show");
+  $("p2dDownload").disabled=false;
+}
+wireDrop($("p2dDrop"), $("p2dInput"), function(file){
+  var rd=new FileReader();
+  rd.onload=function(){ parseVectorPDF(rd.result).then(function(ents){ p2dSetDrawing(ents, file.name); }).catch(function(err){ var e=$("p2dErr"); e.textContent="Could not read that PDF: "+err.message; e.classList.add("show"); }); };
+  rd.readAsArrayBuffer(file);
+});
+$("p2dSample").addEventListener("click", function(){
+  if(!SHARED.samplePDFBlob){ return; }
+  var s=SHARED.samplePDFBlob();
+  s.blob.arrayBuffer().then(function(buf){ return parseVectorPDF(buf); }).then(function(ents){ p2dSetDrawing(ents, "Flange — round-trip sample.pdf"); }).catch(function(err){ var e=$("p2dErr"); e.textContent="Sample failed: "+err.message; e.classList.add("show"); });
+});
+$("p2dDownload").addEventListener("click", function(){
+  if(!p2dDrawing) return;
+  var dxf=entitiesToDXF(p2dDrawing.entities);
+  downloadBlob(new Blob([dxf],{type:"application/dxf"}), (p2dDrawing.name||"drawing").replace(/\.pdf$/i,"")+".dxf");
+});
+
+/* ================= DWFx -> PDF ================= */
+function readU16(b,o){ return b[o]|(b[o+1]<<8); }
+function readU32(b,o){ return (b[o]|(b[o+1]<<8)|(b[o+2]<<16)|(b[o+3]<<24))>>>0; }
+async function unzipEntries(bytes){
+  var entries={};
+  // Central directory (robust against data descriptors)
+  var eocd=-1;
+  for(var i=bytes.length-22;i>=0;i--){ if(readU32(bytes,i)===0x06054b50){ eocd=i; break; } }
+  var list=[];
+  if(eocd>=0){
+    var count=readU16(bytes,eocd+10), cdOff=readU32(bytes,eocd+16), o=cdOff;
+    for(var k=0;k<count;k++){
+      if(readU32(bytes,o)!==0x02014b50) break;
+      var method=readU16(bytes,o+10), compSize=readU32(bytes,o+20), nl=readU16(bytes,o+28), el=readU16(bytes,o+30), cl=readU16(bytes,o+32), lho=readU32(bytes,o+42);
+      var name=new TextDecoder().decode(bytes.slice(o+46,o+46+nl));
+      list.push({name:name,method:method,compSize:compSize,lho:lho});
+      o+=46+nl+el+cl;
+    }
+  }
+  if(!list.length){ // fallback: local headers
+    var off=0;
+    while(off+30<=bytes.length && readU32(bytes,off)===0x04034b50){
+      var m2=readU16(bytes,off+8), cs=readU32(bytes,off+18), nl2=readU16(bytes,off+26), el2=readU16(bytes,off+28);
+      var nm=new TextDecoder().decode(bytes.slice(off+30,off+30+nl2));
+      list.push({name:nm,method:m2,compSize:cs,lho:off});
+      off=off+30+nl2+el2+cs; if(!cs) break;
+    }
+  }
+  for(var j=0;j<list.length;j++){
+    var it=list[j], lh=it.lho;
+    if(readU32(bytes,lh)!==0x04034b50) continue;
+    var lnl=readU16(bytes,lh+26), lel=readU16(bytes,lh+28), ds=lh+30+lnl+lel;
+    var raw=bytes.slice(ds, ds+it.compSize);
+    var data=raw;
+    if(it.method===8) data=await inflateBytes(raw,"deflate-raw");
+    entries[it.name]=data;
+  }
+  return entries;
+}
+function parsePathData(d){
+  var toks=d.match(/[MmLlHhVvCcSsQqTtAaZzFf]|[-+]?\d*\.?\d+(?:e[-+]?\d+)?/gi)||[];
+  var subs=[], cur=null, cx=0, cy=0, sx=0, sy=0, cmd="", i=0;
+  function num(){ return parseFloat(toks[i++]); }
+  function hasNum(){ return i<toks.length && /^[-+\d.]/.test(toks[i]); }
+  while(i<toks.length){
+    if(/^[A-Za-zFf]$/.test(toks[i])){ cmd=toks[i++]; if(cmd==="Z"||cmd==="z"){ if(cur){ cur.closed=true; cx=sx; cy=sy; } } if(cmd==="F"||cmd==="f"){ /* fill rule marker, numbers follow for M */ } continue; }
+    var rel = cmd===cmd.toLowerCase() && cmd!=="";
+    var C=cmd.toUpperCase();
+    if(C==="M"){ var x=num(), y=num(); if(rel){ x+=cx; y+=cy; } cx=sx=x; cy=sy=y; cur={pts:[[x,-y]],closed:false}; subs.push(cur); cmd= rel?"l":"L"; }
+    else if(C==="L"){ var x2=num(), y2=num(); if(rel){ x2+=cx; y2+=cy; } cx=x2; cy=y2; if(cur) cur.pts.push([x2,-y2]); }
+    else if(C==="H"){ var xh=num(); if(rel) xh+=cx; cx=xh; if(cur) cur.pts.push([xh,-cy]); }
+    else if(C==="V"){ var yv=num(); if(rel) yv+=cy; cy=yv; if(cur) cur.pts.push([cx,-yv]); }
+    else if(C==="C"){ var a=num(),b=num(),c2=num(),dd=num(),x3=num(),y3=num(); if(rel){ x3+=cx; y3+=cy; } cx=x3; cy=y3; if(cur) cur.pts.push([x3,-y3]); }
+    else if(C==="A"){ num(); num(); num(); num(); num(); var xa=num(), ya=num(); if(rel){ xa+=cx; ya+=cy; } cx=xa; cy=ya; if(cur) cur.pts.push([xa,-ya]); }
+    else { i++; }
+  }
+  return subs;
+}
+async function parseDWFx(buf){
+  var bytes=new Uint8Array(buf);
+  var head=new TextDecoder("latin1").decode(bytes.slice(0,16));
+  if(head.indexOf("(DWF")===0){ var err=new Error("classic"); err.code="CLASSIC"; throw err; }
+  if(!(bytes[0]===0x50&&bytes[1]===0x4B)){ var e2=new Error("That file is not a DWFx package (ZIP) — it may be a classic binary DWF."); e2.code="CLASSIC"; throw e2; }
+  var entries=await unzipEntries(bytes);
+  var names=Object.keys(entries).filter(function(n){ return /\.fpage$/i.test(n); }).sort();
+  if(!names.length) throw new Error("No drawing sheets (.fpage) were found inside this DWFx package.");
+  var all=[], yOff=0;
+  names.forEach(function(nm){
+    var xml=new TextDecoder("utf-8").decode(entries[nm]);
+    var ents=[];
+    var re=/Data\s*=\s*"([^"]+)"/g, m;
+    while((m=re.exec(xml))){ parsePathData(m[1]).forEach(function(sp){ if(sp.pts.length===2) ents.push({type:"LINE",x:sp.pts[0][0],y:sp.pts[0][1],x2:sp.pts[1][0],y2:sp.pts[1][1],stroke:"#333333"}); else if(sp.pts.length>2) ents.push({type:"LWPOLYLINE",verts:sp.pts,closed:sp.closed,stroke:"#333333"}); }); }
+    var gre=/<Glyphs\b[^>]*>/g, g;
+    while((g=gre.exec(xml))){
+      var tag=g[0];
+      function attr(a){ var mm2=tag.match(new RegExp(a+'\\s*=\\s*"([^"]*)"')); return mm2?mm2[1]:null; }
+      var str=attr("UnicodeString"), ox=parseFloat(attr("OriginX")||"0"), oy=parseFloat(attr("OriginY")||"0"), fs=parseFloat(attr("FontRenderingEmSize")||"12");
+      if(str) ents.push({type:"TEXT",x:ox,y:-oy+fs,h:fs,text:str.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">"),stroke:"#333333"});
+    }
+    if(ents.length){
+      var b=boundsOf(ents), hgt=b.maxY-b.minY;
+      ents.forEach(function(e){
+        function sh(p){ return [p[0], p[1]+yOff]; }
+        if(e.type==="LINE"){ e.y+=yOff; e.y2+=yOff; }
+        else if(e.type==="LWPOLYLINE"){ e.verts=e.verts.map(sh); }
+        else if(e.type==="TEXT"){ e.y+=yOff; }
+        all.push(e);
+      });
+      yOff -= (hgt+60);
+    }
+  });
+  return all;
+}
+function dwfSampleEntities(){
+  var E=[];
+  function rect(x,y,w,h){ E.push({type:"LWPOLYLINE",verts:[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],closed:true,stroke:"#333333"}); }
+  function line(x1,y1,x2,y2){ E.push({type:"LINE",x:x1,y:y1,x2:x2,y2:y2,stroke:"#333333"}); }
+  function circ(x,y,r){ E.push({type:"CIRCLE",cx:x,cy:y,r:r,stroke:"#333333"}); }
+  function txt(x,y,h,t){ E.push({type:"TEXT",x:x,y:y,h:h,text:t,stroke:"#333333"}); }
+  rect(0,0,900,620); rect(14,14,872,592);
+  rect(560,14,326,110);
+  line(560,58,886,58); line(560,90,886,90); line(712,14,712,58);
+  txt(576,96,20,"SAMPLE DWFX SHEET"); txt(576,66,13,"TITLE: GROUND FLOOR PLAN"); txt(576,26,12,"SCALE 1:50"); txt(724,26,12,"SHEET A-101");
+  rect(60,180,300,240); rect(70,190,280,220); line(200,190,200,330); line(70,330,200,330);
+  circ(680,360,90); circ(680,360,34);
+  circ(590,360,10); circ(770,360,10); circ(680,270,10); circ(680,450,10);
+  txt(60,470,18,"PLAN + DETAIL — FROM DWFx GEOMETRY");
+  txt(60,150,13,"This sample is drawn from path data, the same way a real DWFx sheet is read.");
+  return E;
+}
+var dwfDrawing=null;
+function dwfSetDrawing(entities, name){
+  if(!entities.length){ var e=$("dwfErr"); e.textContent="No sheet geometry was found in that file. If it is a classic binary DWF, re-publish it as DWFx and try again."; e.classList.add("show"); return; }
+  $("dwfErr").classList.remove("show"); $("dwfWarn").classList.remove("show");
+  dwfDrawing={entities:entities,name:name};
+  $("dwfEmpty").style.display="none"; var cv=$("dwfCanvas"); cv.style.display="block";
+  drawEntities(cv, entities, {});
+  var b=boundsOf(entities);
+  $("dwfTitle").textContent=name;
+  $("dwfStats").textContent=entities.length+" entities · "+(b.maxX-b.minX).toFixed(0)+" × "+(b.maxY-b.minY).toFixed(0)+" units";
+  var info=$("dwfInfo"); info.innerHTML="🗂️ <strong>"+name.replace(/</g,"&lt;")+"</strong> — sheet geometry loaded, ready to download as PDF"; info.classList.add("show");
+  $("dwfDownload").disabled=false;
+}
+wireDrop($("dwfDrop"), $("dwfInput"), function(file){
+  $("dwfWarn").classList.remove("show"); $("dwfErr").classList.remove("show");
+  var rd=new FileReader();
+  rd.onload=function(){ parseDWFx(rd.result).then(function(ents){ dwfSetDrawing(ents, file.name); }).catch(function(err){
+    if(err.code==="CLASSIC"){ $("dwfWarn").classList.add("show"); var inf=$("dwfInfo"); inf.innerHTML="🗂️ <strong>"+file.name.replace(/</g,"&lt;")+"</strong> — classic binary DWF detected"; inf.classList.add("show"); }
+    else { var e=$("dwfErr"); e.textContent="Could not convert that file: "+err.message; e.classList.add("show"); }
+  }); };
+  rd.readAsArrayBuffer(file);
+});
+$("dwfSample").addEventListener("click", function(){ dwfSetDrawing(dwfSampleEntities(), "Sample DWFx sheet.dwf"); });
+$("dwfDownload").addEventListener("click", function(){
+  if(!dwfDrawing || !SHARED.buildPDFFrom) return;
+  var blob=SHARED.buildPDFFrom({entities:dwfDrawing.entities, bounds:boundsOf(dwfDrawing.entities), name:dwfDrawing.name}, $("dwfPaper").value, false, 0.7);
+  downloadBlob(blob, (dwfDrawing.name||"dwf-sheet").replace(/\.(dwf|dwfx)$/i,"")+".pdf");
+});
+
+/* ================= DXF -> Image ================= */
+var imgDrawing=null, imgFormat="png", imgRes=2, imgBg="white", imgBw=false;
+function imgRender(){
+  if(!imgDrawing) return;
+  var cv=$("imgCanvas");
+  cv.className="mini"+(imgBg==="dark"?" darkbg":(imgBg==="transparent"?" checker":""));
+  drawEntities(cv, imgDrawing.entities, { bw:imgBw, dark:imgBg==="dark", transparent:imgBg==="transparent", bg: imgBg==="dark" ? "#101820" : (imgBg==="transparent" ? null : "#ffffff") });
+  var b=boundsOf(imgDrawing.entities);
+  $("imgStats").textContent=imgDrawing.entities.length+" entities · export "+(900*imgRes)+" × "+(620*imgRes)+" px "+imgFormat.toUpperCase();
+}
+function imgSetDrawing(d, name){
+  imgDrawing=d; imgDrawing.name=name;
+  $("imgErr").classList.remove("show"); $("imgDwgMsg").classList.remove("show");
+  $("imgEmpty").style.display="none"; var cv=$("imgCanvas"); cv.style.display="block";
+  $("imgTitle").textContent=name;
+  var info=$("imgInfo"); info.innerHTML="📄 <strong>"+name.replace(/</g,"&lt;")+"</strong> — loaded, "+d.entities.length+" entities"; info.classList.add("show");
+  $("imgDownload").disabled=false;
+  imgRender();
+}
+wireDrop($("imgDrop"), $("imgInput"), function(file){
+  if(file.name.toLowerCase().endsWith(".dwg")){ $("imgDwgMsg").classList.add("show"); return; }
+  var rd=new FileReader();
+  rd.onload=function(){ try{ var d=SHARED.parseDXF(String(rd.result)); if(!d.entities.length) throw new Error("No drawable entities found in that DXF."); imgSetDrawing(d, file.name); }catch(err){ var e=$("imgErr"); e.textContent="Could not read that file: "+err.message; e.classList.add("show"); } };
+  rd.readAsText(file);
+});
+document.querySelectorAll(".img-sample").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var s=SHARED.SAMPLES && SHARED.SAMPLES[btn.getAttribute("data-sample")];
+    if(s) imgSetDrawing(SHARED.parseDXF(s.fn()), s.name);
+  });
+});
+$("imgFmtPng").addEventListener("click", function(){ imgFormat="png"; this.classList.add("on"); $("imgFmtJpg").classList.remove("on"); imgRender(); });
+$("imgFmtJpg").addEventListener("click", function(){ imgFormat="jpg"; this.classList.add("on"); $("imgFmtPng").classList.remove("on"); imgRender(); });
+document.querySelectorAll(".img-res").forEach(function(b){ b.addEventListener("click", function(){ imgRes=parseInt(b.getAttribute("data-res"),10); document.querySelectorAll(".img-res").forEach(function(x){ x.classList.remove("on"); }); b.classList.add("on"); imgRender(); }); });
+document.querySelectorAll(".img-bg").forEach(function(b){ b.addEventListener("click", function(){ imgBg=b.getAttribute("data-bg"); document.querySelectorAll(".img-bg").forEach(function(x){ x.classList.remove("on"); }); b.classList.add("on"); imgRender(); }); });
+$("imgColor").addEventListener("click", function(){ imgBw=false; this.classList.add("on"); $("imgBW").classList.remove("on"); imgRender(); });
+$("imgBW").addEventListener("click", function(){ imgBw=true; this.classList.add("on"); $("imgColor").classList.remove("on"); imgRender(); });
+$("imgDownload").addEventListener("click", function(){
+  if(!imgDrawing) return;
+  var off=document.createElement("canvas"); off.width=900*imgRes; off.height=620*imgRes;
+  var bg = imgBg==="dark" ? "#101820" : "#ffffff";
+  var transparent = imgFormat==="png" && imgBg==="transparent";
+  drawEntities(off, imgDrawing.entities, { bw:imgBw, dark:imgBg==="dark", transparent:transparent, bg: transparent?null:bg, lw: 1.4*imgRes });
+  var type = imgFormat==="png" ? "image/png" : "image/jpeg";
+  off.toBlob(function(blob){ if(blob) downloadBlob(blob, (imgDrawing.name||"drawing").replace(/\.(dxf|dwg)$/i,"")+"."+imgFormat); }, type, 0.92);
+});
+})();
+</script>
+<script>
+(function(){
+"use strict";
+/* ---------- Page router: header/footer menu + standalone pages ----------
+   Every menu link carries a real href AND a direct click handler, so a tap
+   switches the view immediately — navigation never depends on the browser
+   firing a hashchange event (which embedded webviews can swallow). The hash
+   is still updated silently for deep-linking, and hashchange keeps handling
+   back/forward and pasted links. */
+var ROUTES = { "/": "home", "/tools": "tools", "/about": "about", "/contact": "contact", "/privacy": "privacy", "/terms": "terms", "/disclaimer": "disclaimer" };
+var VIEWS = { home: document.getElementById("view-home") };
+["tools","about","contact","privacy","terms","disclaimer"].forEach(function(n){ VIEWS[n] = document.getElementById("page-"+n); });
+var TITLES = {
+  home: "DWG to PDF Free — DWG to PDF, PDF to DXF, DWF to PDF & DWG to JPG/PNG Converters",
+  tools: "All Tools — DWG to PDF Free",
+  about: "About — DWG to PDF Free",
+  contact: "Contact — DWG to PDF Free",
+  privacy: "Privacy Policy — DWG to PDF Free",
+  terms: "Terms of Use — DWG to PDF Free",
+  disclaimer: "Disclaimer — DWG to PDF Free"
+};
+function show(name){
+  Object.keys(VIEWS).forEach(function(k){ if(VIEWS[k]) VIEWS[k].hidden = (k !== name); });
+  document.querySelectorAll("[data-navlink]").forEach(function(a){
+    a.classList.toggle("on", a.getAttribute("data-navlink") === name);
+  });
+  if(TITLES[name]) document.title = TITLES[name];
+}
+function setHash(h){
+  try { history.replaceState(null, "", h); }
+  catch(e){ try { location.hash = h; } catch(e2){} }
+}
+function goPage(name){
+  show(name);
+  setHash(name === "home" ? "#/" : "#/" + name);
+  window.scrollTo(0, 0);
+}
+function scrollToEl(el){
+  var bar = document.querySelector(".sitebar");
+  var off = (bar ? bar.offsetHeight : 0) + 10;
+  var y = el.getBoundingClientRect().top + window.pageYOffset - off;
+  window.scrollTo(0, Math.max(0, y));
+}
+function goAnchor(id, hash){
+  show("home");
+  setHash(hash);
+  var el = document.getElementById(id);
+  if(el){ setTimeout(function(){ scrollToEl(el); }, 40); }
+  else { window.scrollTo(0, 0); }
+}
+function routeFromHash(h){
+  if(h && h.indexOf("#/") === 0) return ROUTES[h.slice(1)] || "home";
+  return null;
+}
+function apply(){
+  var h = location.hash || "";
+  var name = routeFromHash(h);
+  if(name){ show(name); window.scrollTo(0, 0); return; }
+  show("home");
+  if(h.length > 1){
+    var el = document.getElementById(h.slice(1));
+    if(el){ setTimeout(function(){ scrollToEl(el); }, 40); }
+  }
+}
+document.addEventListener("click", function(e){
+  var t = e.target;
+  var a = (t && t.closest) ? t.closest('a[href^="#"]') : null;
+  if(!a) return;
+  var href = a.getAttribute("href") || "";
+  var name = routeFromHash(href);
+  if(name){ e.preventDefault(); goPage(name); return; }
+  if(href.length > 1 && href.charAt(1) !== "/"){
+    if(document.getElementById(href.slice(1))){ e.preventDefault(); goAnchor(href.slice(1), href); }
+  }
+});
+window.addEventListener("hashchange", apply);
+apply();
+
+/* ---------- Contact form: sends via Web3Forms.
+   The recipient address is held by Web3Forms against the access key —
+   no email address appears anywhere in this page. ---------- */
+var cf = document.getElementById("contactForm");
+if(cf){
+  cf.addEventListener("submit", function(e){
+    e.preventDefault();
+    var status = document.getElementById("cfStatus");
+    var btn = document.getElementById("cfSubmit");
+    var name = document.getElementById("cfName").value.trim();
+    var email = document.getElementById("cfEmail").value.trim();
+    var msg = document.getElementById("cfMsg").value.trim();
+    function show(kind, text){
+      if(!status) return;
+      status.className = "form-status show " + kind;
+      status.textContent = text;
+    }
+    if(!name || !email || !msg){
+      show("error", "Please fill in your name, email and message, then try again.");
+      return;
+    }
+    if(btn){ btn.disabled = true; btn.textContent = "Sending…"; }
+    if(status){ status.className = "form-status"; status.textContent = ""; }
+
+    var formData = new FormData(cf);
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    }).then(function(res){
+      return res.json().catch(function(){ return null; }).then(function(data){
+        return { ok: res.ok, data: data };
+      });
+    }).then(function(result){
+      var success = result.ok && result.data && result.data.success;
+      if(success){
+        cf.reset();
+        show("success", "Thank you — your message has been sent successfully. We'll get back to you at the email address you provided.");
+      } else {
+        var detail = (result.data && result.data.message) ? " " + result.data.message : "";
+        show("error", "Sorry, your message could not be sent." + detail + " Please check your connection and try again.");
+      }
+    }).catch(function(){
+      show("error", "Sorry, your message could not be sent. Please check your connection and try again.");
+    }).finally(function(){
+      if(btn){ btn.disabled = false; btn.textContent = "Submit"; }
+    });
+  });
+}
+})();
+</script>
+</body>
+</html>
